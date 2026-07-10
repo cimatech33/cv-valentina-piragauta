@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="description" content="Valentina Piragauta Páez — Profesional en SST, Auditora Líder HSEQ y Auditora RUC">
+<title>Valentina Piragauta · HSEQ · Auditoría · Gestión de Riesgos</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+:root {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f5f3ff; /* Tono morado muy suave */
+  --surface-3: #ede9fe;
+  --text: #1e1b4b;
+  --text-soft: #4c1d95;
+  --text-muted: #7e6bb0;
+  --accent: #7C3AED; /* Morado Real */
+  --accent-2: #8B5CF6;
+  --border: #ede9fe;
+  --radius-card: 20px;
+  --radius-sm: 8px;
+  --transition: background 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+body.dark {
+  --bg: #140a1c;
+  --surface: #140a1c;
+  --surface-2: #1e1b4b;
+  --surface-3: #2e2a5e;
+  --text: #f0edfe;
+  --text-soft: #c4b5fd;
+  --text-muted: #8b7cbd;
+  --accent: #8B5CF6;
+  --accent-2: #A78BFA;
+  --border: #312e81;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  transition: var(--transition);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── SCROLL PROGRESS ── */
+#scrollBar {
+  position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+  background: var(--accent); z-index: 2000;
+  transition: width 0.1s linear;
+}
+
+/* ── NAVBAR ── */
+.navbar {
+  position: fixed; top: 0; width: 100%; z-index: 1000;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  transition: var(--transition);
+}
+body.dark .navbar { background: rgba(20,10,28,0.94); }
+.nav-inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+  height: 64px; display: flex; align-items: center; justify-content: space-between;
+}
+.logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.1rem; color: var(--text);
+  display: flex; align-items: baseline; gap: 6px;
+}
+.logo-prefix { color: var(--accent); }
+.logo-suffix { color: var(--text-muted); font-size: 0.8rem; font-weight: 500; }
+.nav-links { display: flex; align-items: center; gap: 1.8rem; }
+.nav-links a {
+  text-decoration: none; font-size: 0.75rem; font-weight: 600;
+  color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase;
+  position: relative; transition: color 0.2s;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0;
+  width: 0; height: 2px; background: var(--accent); transition: width 0.2s;
+}
+.nav-links a:hover { color: var(--accent); }
+.nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+.nav-links a.active { color: var(--accent); }
+.nav-controls { display: flex; gap: 0.5rem; align-items: center; }
+.nav-btn {
+  background: none; border: 1px solid var(--border); color: var(--text-muted);
+  font-size: 0.7rem; cursor: pointer; padding: 5px 12px; border-radius: var(--radius-sm);
+  font-family: 'DM Sans', sans-serif; font-weight: 600; letter-spacing: 0.04em;
+  transition: color 0.2s, border-color 0.2s;
+}
+.nav-btn:hover { color: var(--accent); border-color: var(--accent); }
+.menu-icon { display: none; }
+@media (max-width: 900px) {
+  .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--surface); padding: 1.5rem; gap: 1rem; border-bottom: 1px solid var(--border); z-index: 999; }
+  .nav-links.open { display: flex; }
+  .menu-icon { display: block; }
+}
+
+/* ── LAYOUT ── */
+main { max-width: 1200px; margin: 0 auto; padding: 80px 2rem 2rem; }
+section { margin-bottom: 5rem; }
+
+/* ── TYPOGRAPHY ── */
+h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2rem; margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+h2 em { font-style: italic; color: var(--accent); }
+h3 { font-size: 1rem; font-weight: 700; color: var(--text); }
+p { color: var(--text-soft); }
+.label {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem;
+}
+.label::before { content: ''; width: 24px; height: 2px; background: var(--accent); display: block; }
+
+/* ── HERO ── */
+.hero {
+  display: grid; grid-template-columns: auto 1fr 300px; gap: 2.5rem;
+  align-items: center; margin-bottom: 2rem;
+}
+.hero-avatar {
+  width: 350px; height: 350px; border-radius: 50%;
+  overflow: hidden; border: 4px solid var(--accent);
+  background: var(--surface-3); flex-shrink: 0;
+  box-shadow: 0 8px 32px rgba(124,58,237,0.18);
+}
+.hero-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 3.2rem; line-height: 1.1; margin-bottom: 0.5rem;
+  letter-spacing: -0.03em;
+}
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(124,58,237,0.08); border: 1px solid rgba(124,58,237,0.2);
+  border-radius: 40px; padding: 4px 14px;
+  font-size: 0.7rem; font-weight: 600; color: var(--accent); margin-bottom: 1rem;
+}
+.typed-wrap { min-height: 2rem; margin-bottom: 1rem; }
+.typed-line { font-size: 1.05rem; color: var(--text-soft); }
+.cursor { display: inline-block; width: 2px; height: 1em; background: var(--accent); vertical-align: text-bottom; animation: blink 1s step-end infinite; }
+@keyframes blink { 0%,100%{ opacity:1 } 50%{ opacity:0 } }
+.hero-desc { color: var(--text-soft); margin-bottom: 1.5rem; max-width: 520px; font-size: 0.95rem; line-height: 1.75; }
+.hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 0.6rem 1.4rem; border-radius: var(--radius-sm);
+  font-weight: 600; text-decoration: none; transition: all 0.2s;
+  font-family: 'DM Sans', sans-serif; font-size: 0.875rem; cursor: pointer;
+  border: none;
+}
+.btn-primary { background: var(--accent); color: white; }
+.btn-primary:hover { background: var(--accent-2); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(124,58,237,0.28); }
+.btn-outline { border: 1px solid var(--border); color: var(--text-soft); background: transparent; }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.stats { display: flex; flex-direction: column; gap: 1rem; }
+.stat-card {
+  background: var(--surface-2); border: 1px solid var(--border);
+  border-radius: var(--radius-card); padding: 1.2rem 1.5rem;
+  transition: var(--transition), transform 0.2s;
+}
+.stat-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.stat-number { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--accent); line-height: 1; }
+.stat-label { font-size: 0.75rem; color: var(--text-muted); font-weight: 500; margin-top: 0.25rem; }
+
+/* ── TRUST BAR ── */
+.trust-bar {
+  display: flex; align-items: center; gap: 0; overflow-x: auto;
+  padding: 1.2rem 0; border-bottom: 1px solid var(--border); margin-bottom: 3rem;
+  scrollbar-width: none;
+}
+.trust-bar::-webkit-scrollbar { display: none; }
+.trust-label { font-size: 0.68rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; white-space: nowrap; margin-right: 1.5rem; }
+.trust-sep { width: 1px; height: 16px; background: var(--border); margin: 0 1.2rem; flex-shrink: 0; }
+.trust-item { font-size: 0.8rem; font-weight: 600; color: var(--text-soft); white-space: nowrap; opacity: 0.8; }
+
+/* ── ABOUT ── */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+.highlight-box {
+  background: var(--surface-2); border-left: 3px solid var(--accent);
+  padding: 1rem 1.2rem; border-radius: 0 12px 12px 0; margin-top: 1rem;
+  transition: var(--transition);
+}
+.focus-list { display: flex; flex-direction: column; gap: 0.9rem; }
+.focus-item {
+  display: flex; gap: 1rem; background: var(--surface-2);
+  padding: 1rem 1.1rem; border-radius: 14px; border: 1px solid var(--border);
+  transition: border-color 0.2s, box-shadow 0.2s, var(--transition);
+}
+.focus-item:hover { border-color: var(--accent); box-shadow: 0 4px 16px rgba(124,58,237,0.07); }
+.focus-icon {
+  width: 38px; height: 38px; min-width: 38px; background: rgba(124,58,237,0.08);
+  border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  color: var(--accent); font-size: 0.95rem;
+}
+.focus-item strong { font-size: 0.875rem; color: var(--text); }
+.focus-item span { font-size: 0.8rem; color: var(--text-muted); }
+
+/* ── PROJECTS ── */
+.projects-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem; margin-top: 1.5rem;
+}
+.project-card {
+  background: var(--surface-2); border: 1px solid var(--border);
+  border-radius: var(--radius-card); padding: 1.5rem;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s, var(--transition);
+  position: relative; overflow: hidden;
+}
+.project-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+}
+.project-card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 10px 32px rgba(124,58,237,0.1); }
+.project-card:hover::before { transform: scaleX(1); }
+.project-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+.project-icon {
+  width: 44px; height: 44px; background: rgba(124,58,237,0.08);
+  border-radius: 12px; display: flex; align-items: center; justify-content: center;
+  color: var(--accent); font-size: 1.1rem;
+}
+.status-live { background: rgba(34,197,94,0.12); color: #16a34a; padding: 3px 10px; border-radius: 6px; font-size: 0.68rem; font-weight: 700; }
+.status-dev { background: rgba(99,102,241,0.12); color: #6366f1; padding: 3px 10px; border-radius: 6px; font-size: 0.68rem; font-weight: 700; }
+body.dark .status-live { background: rgba(34,197,94,0.15); color: #4ade80; }
+body.dark .status-dev  { background: rgba(99,102,241,0.15); color: #a5b4fc; }
+.project-card h3 { margin-bottom: 0.5rem; }
+.project-card p { font-size: 0.85rem; line-height: 1.65; margin-top: 0.4rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+.tag { background: var(--surface-3); border: 1px solid var(--border); padding: 3px 10px; border-radius: 6px; font-size: 0.68rem; font-weight: 600; color: var(--text-muted); transition: var(--transition); }
+
+/* ── EXPERIENCE ── */
+.exp-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+.timeline { position: relative; padding-left: 1.5rem; }
+.timeline::before {
+  content: ''; position: absolute; left: 0; top: 8px;
+  width: 1px; background: var(--border);
+}
+.tl-item { position: relative; padding-bottom: 2rem; }
+.tl-item:last-child { padding-bottom: 0; }
+.tl-item::before {
+  content: ''; position: absolute; left: -1.5rem; top: 6px;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--surface); border: 2px solid var(--border);
+  transition: var(--transition);
+}
+.tl-item.featured::before { border-color: var(--accent); background: var(--accent); }
+.tl-meta { font-size: 0.7rem; color: var(--text-muted); font-weight: 600; letter-spacing: 0.02em; }
+.tl-company { font-size: 0.82rem; color: var(--accent); font-weight: 700; margin: 0.25rem 0 0.15rem; }
+.tl-role { font-weight: 700; font-size: 0.9rem; color: var(--text); margin-bottom: 0.2rem; }
+.func-list { list-style: none; margin-top: 0.5rem; }
+.func-list li {
+  font-size: 0.8rem; color: var(--text-soft); margin-bottom: 0.35rem;
+  display: flex; gap: 0.5rem; line-height: 1.55;
+}
+.func-list li i { color: var(--accent); font-size: 0.68rem; margin-top: 0.25rem; flex-shrink: 0; }
+.badge-license {
+  background: rgba(124,58,237,0.1); color: var(--accent);
+  font-size: 0.6rem; padding: 2px 8px; border-radius: 20px; margin-left: 0.5rem;
+  font-weight: 700; letter-spacing: 0.04em;
+}
+
+/* ── EDUCATION ── */
+.edu-card {
+  display: flex; gap: 1rem; background: var(--surface-2); padding: 1rem 1.1rem;
+  border-radius: 14px; margin-bottom: 0.9rem; border: 1px solid var(--border);
+  align-items: flex-start; transition: var(--transition), border-color 0.2s;
+}
+.edu-card:hover { border-color: var(--accent); }
+.edu-card > i { color: var(--accent); margin-top: 2px; width: 16px; text-align: center; flex-shrink: 0; }
+.edu-card strong { font-size: 0.88rem; color: var(--text); }
+.edu-card span { font-size: 0.8rem; color: var(--text-muted); }
+
+/* ── SKILLS ── */
+.skills-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 1.5rem; }
+.skill-group h4 {
+  font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 1rem;
+}
+.skill-list { list-style: none; }
+.skill-list li {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.4rem 0; border-bottom: 1px solid var(--border);
+  font-size: 0.85rem; color: var(--text-soft);
+  transition: var(--transition);
+}
+.skill-list li:last-child { border-bottom: none; }
+.skill-list li::before { content: ''; width: 4px; height: 4px; min-width: 4px; border-radius: 50%; background: var(--accent); }
+
+/* ── SERVICES ── */
+.services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 1.2rem; }
+.srv-card {
+  background: var(--surface-2); border: 1px solid var(--border);
+  border-radius: var(--radius-card); padding: 1.5rem;
+  border-left: 3px solid transparent;
+  transition: border-left-color 0.2s, box-shadow 0.2s, var(--transition);
+}
+.srv-card:hover { border-left-color: var(--accent); box-shadow: 0 4px 20px rgba(124,58,237,0.07); }
+.srv-icon {
+  width: 40px; height: 40px; background: rgba(124,58,237,0.08);
+  border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  color: var(--accent); font-size: 1rem; margin-bottom: 1rem;
+}
+.srv-card h3 { margin-bottom: 0.4rem; font-size: 0.92rem; }
+.srv-card p { font-size: 0.83rem; margin: 0; }
+
+/* ── CONTACT ── */
+.contact-item {
+  display: flex; align-items: center; gap: 1rem; padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border); text-decoration: none; color: var(--text-soft);
+  transition: color 0.2s;
+}
+.contact-item:hover { color: var(--accent); }
+.contact-item i { width: 20px; color: var(--accent); text-align: center; }
+.contact-item .ci-label { font-size: 0.7rem; color: var(--text-muted); }
+.contact-item .ci-val { font-size: 0.9rem; font-weight: 600; }
+.social-row { display: flex; gap: 0.5rem; margin-top: 1.2rem; flex-wrap: wrap; }
+.social-link {
+  padding: 5px 14px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+  text-decoration: none; font-size: 0.72rem; font-weight: 600; color: var(--text-muted);
+  display: flex; align-items: center; gap: 0.4rem;
+  transition: color 0.2s, border-color 0.2s;
+}
+.social-link:hover { color: var(--accent); border-color: var(--accent); }
+
+/* ── FOOTER ── */
+footer {
+  text-align: center; padding: 2rem; border-top: 1px solid var(--border); margin-top: 2rem;
+  font-size: 0.8rem; color: var(--text-muted);
+  transition: var(--transition);
+}
+
+/* ── WA FLOAT ── */
+.wa-float {
+  position: fixed; bottom: 20px; right: 20px;
+  background: #22c55e; color: white; padding: 10px 18px;
+  border-radius: 50px; display: flex; align-items: center; gap: 8px;
+  text-decoration: none; font-weight: 700; font-size: 0.85rem; z-index: 1000;
+  box-shadow: 0 4px 16px rgba(34,197,94,0.35); transition: transform 0.2s;
+}
+.wa-float:hover { transform: translateY(-2px); }
+@media (max-width: 640px) { .wa-float span { display: none; } .wa-float { padding: 11px; border-radius: 50%; } }
+
+/* ── PDF OVERLAY ── */
+#pdfOverlay {
+  display: none; position: fixed; inset: 0; z-index: 9999;
+  background: rgba(0,0,0,0.82); backdrop-filter: blur(8px);
+  align-items: center; justify-content: center; flex-direction: column;
+  gap: 1rem; color: white;
+}
+#pdfOverlay.show { display: flex; }
+.spinner { width: 40px; height: 40px; border: 3px solid rgba(255,255,255,0.2); border-top-color: white; border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+#pdfOverlay p { font-size: 0.9rem; font-weight: 500; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .hero { grid-template-columns: auto 1fr; }
+  .stats { flex-direction: row; grid-column: 1 / -1; }
+  .stat-card { flex: 1; }
+}
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; text-align: center; gap: 1.5rem; }
+  .hero-avatar { margin: 0 auto; }
+  .hero-actions { justify-content: center; }
+  .hero-desc { margin-left: auto; margin-right: auto; }
+  .stats { flex-direction: row; }
+  .about-grid, .exp-layout { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  main { padding: 72px 1.2rem 2rem; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .stats { flex-direction: column; }
+  h2 { font-size: 1.6rem; }
+  .hero-name { font-size: 2.4rem; }
+}
+</style>
+</head>
+<body>
+
+<div id="scrollBar"></div>
+<div id="pdfOverlay"><div class="spinner"></div><p id="pdfMsg">Generando PDF...</p></div>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <div class="logo"><span class="logo-prefix">Prof.</span> Valentina Piragauta <span class="logo-suffix">— HSEQ, Auditoría & Gestión de Riesgos</span></div>
+    <div class="nav-links" id="navLinks">
+      <a href="#home"       data-i18n="nav_home">Inicio</a>
+      <a href="#about"      data-i18n="nav_about">Perfil</a>
+      <a href="#projects"   data-i18n="nav_projects">Logros</a>
+      <a href="#experience" data-i18n="nav_exp">Experiencia</a>
+      <a href="#services"   data-i18n="nav_services">Servicios</a>
+      <a href="#contact"    data-i18n="nav_contact">Contacto</a>
+    </div>
+    <div class="nav-controls">
+      <button class="nav-btn" id="pdfBtn"><i class="fas fa-file-pdf"></i> <span data-i18n="pdf_btn">CV PDF</span></button>
+      <button class="nav-btn" id="langToggle">EN</button>
+      <button class="nav-btn" id="themeToggle"><i class="fas fa-moon"></i></button>
+      <button class="nav-btn menu-icon" id="menuToggle"><i class="fas fa-bars"></i></button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-avatar">
+      <!-- 👇👇👇 AQUÍ DEBES PEGAR EL TEXTO BASE64 DE LA FOTO 👇👇👇 -->
+      <!-- EJEMPLO: src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA... (TODO EL TEXTO LARGO)" -->
+      <img src="foto.jpg" alt="Valentina Piragauta">
+    </div>
+    <div>
+      <div class="hero-tag"><i class="fas fa-map-marker-alt"></i> <span data-i18n="hero_tag">Bogotá, Colombia · Presencial/Remoto/Híbrido</span></div>
+      <h1 class="hero-name">Valentina<br>Piragauta Páez</h1>
+      <div class="typed-wrap"><span class="typed-line"><span id="typedText"></span><span class="cursor"></span></span></div>
+      <p class="hero-desc" data-i18n="hero_desc">Profesional en Seguridad y Salud en el Trabajo (SST), Auditora Líder HSEQ (Trinorma) y Auditora RUC. Más de 8 años de experiencia en diseño, administración, mantenimiento y ejecución de sistemas integrados de gestión. Experiencia en auditorias, consultorías, gestión de riesgos, cumplimiento legal, implementación de acciones de mejora y fortalecimiento de la cultura organizacional. Me destaco por mi liderazgo, pensamiento estratégico, capacidad de análisis, planificación, organización y adaptación al cambio, orientando la gestión al cumplimiento normativo, la optimización de procesos y la mejora continua. Comprometida con la generación de valor para las organizaciones mediante soluciones integrales que fortalecen el desempeño en calidad, seguridad, salud en el trabajo y gestión ambiental, contribuyendo al logro de los objetivos estratégicos y al desarrollo de organizaciones más seguras, eficientes y sostenibles.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary" data-i18n="btn_contact"><i class="fas fa-paper-plane"></i> Contactar</a>
+        <button id="pdfBtnHero" class="btn btn-outline"><i class="fas fa-file-pdf"></i> <span data-i18n="pdf_btn">CV PDF</span></button>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat-card"><div class="stat-number">8+</div><div class="stat-label" data-i18n="stat1">Años en HSEQ y gestión</div></div>
+      <div class="stat-card"><div class="stat-number">40+</div><div class="stat-label" data-i18n="stat2">Auditorías realizadas</div></div>
+      <div class="stat-card"><div class="stat-number">4</div><div class="stat-label" data-i18n="stat3">Empresas certificadas</div></div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <span class="trust-label" data-i18n="trust_label">Experiencia en</span>
+    <span class="trust-item">ECOPETROL S.A. </span>
+    <span class="trust-sep"></span>
+    <span class="trust-item">P&H Company Services</span>
+    <span class="trust-sep"></span>
+    <span class="trust-item">Dismontajes S.A.S</span>
+    <span class="trust-sep"></span>
+    <span class="trust-item">ARL SURA</span>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="label" data-i18n="label_about">Perfil profesional</div>
+    <div class="about-grid">
+      <div>
+        <h2 data-i18n="about_h2">Impulsando el cumplimiento normativo,<br><em>la excelencia operacional y la mejora continua.</em></h2>
+        <p style="margin-bottom:1rem;" data-i18n="about_p1">Profesional en Seguridad y Salud en el Trabajo, con licencia vigente, Auditora Líder HSEQ certificada por Exemplar Global (ISO 9001, ISO 14001, ISO 45001 e ISO 19011) y Auditora RUC, con más de ocho años de experiencia en el diseño, implementación, administración, mantenimiento, auditoría y mejora de Sistemas Integrados de Gestión (HSEQ).</p>
+        <p data-i18n="about_p2">A lo largo de mi trayectoria he liderado procesos de auditoría, consultoría y fortalecimiento de sistemas de gestión en organizaciones de los sectores industrial, metalmecánico, manufactura, mantenimiento industrial, hidrocarburos y servicios especializados. Mi enfoque está en la implementación de buenas prácticas que van más allá del cumplimiento normativo, impulsando la cultura de prevención y mejora continua en las organizaciones.</p>
+        <div class="highlight-box" style="margin-top:1rem;"><strong data-i18n="obj_label">Objetivo:</strong> <span data-i18n="about_obj">Aportar mi conocimiento y experiencia en HSEQ para fortalecer los sistemas de gestión de las organizaciones, garantizar la seguridad de los trabajadores y optimizar los procesos a través de la mejora continua.</span></div>
+      </div>
+      <div>
+        <p style="font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-muted); margin-bottom:1rem;" data-i18n="focus_label">Competencias clave</p>
+        <div class="focus-list">
+          <div class="focus-item"><div class="focus-icon"><i class="fas fa-shield-alt"></i></div><div><strong data-i18n="focus1_title">Diseño y administración de SG-SST</strong><br><span data-i18n="focus1_sub">Implementación, mantenimiento y mejora de sistemas integrados de gestión bajo ISO 9001, 14001, 45001 y Decreto 1072.</span></div></div>
+          <div class="focus-item"><div class="focus-icon"><i class="fas fa-clipboard-check"></i></div><div><strong data-i18n="focus2_title">Auditoría Líder HSEQ</strong><br><span data-i18n="focus2_sub">Auditoría interna y externa Trinorma, evaluación de cumplimiento RUC y aplicación de estándares internacionales.</span></div></div>
+          <div class="focus-item"><div class="focus-icon"><i class="fas fa-users-cog"></i></div><div><strong data-i18n="focus3_title">Liderazgo y Gestión de Equipos</strong><br><span data-i18n="focus3_sub">Capacidad para coordinar equipos multidisciplinarios, planificación de estrategias mediante la mejora continua y fortalecimiento de la cultura organizacional.</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS (Logros destacados) -->
+  <section id="projects">
+    <div class="label" data-i18n="label_projects">Logros destacados</div>
+    <h2 data-i18n="projects_h2">Certificaciones y proyectos<br><em>de alto impacto.</em></h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-header"><div class="project-icon"><i class="fas fa-file-signature"></i></div><span class="status-live">Certificado</span></div>
+        <h3>Certificación Trinorma HSEQ</h3>
+        <p>Lideré la implementación y certificación del sistema integrado de gestión bajo las normas ISO 9001:2015, ISO 14001:2015 y ISO 45001:2018 para una empresa del sector industrial.</p>
+        <div class="tags"><span class="tag">ISO 9001</span><span class="tag">ISO 14001</span><span class="tag">ISO 45001</span></div>
+      </div>
+      <div class="project-card">
+        <div class="project-header"><div class="project-icon"><i class="fas fa-balance-scale"></i></div><span class="status-live">Implementado</span></div>
+        <h3>Auditoría RUC con Buenas Prácticas</h3>
+        <p>Evaluación y auditoría del Sistema de Gestión en Seguridad y Salud en el Trabajo bajo el Decreto 1072, implementando buenas prácticas adicionales que superaron los estándares mínimos de calificación.</p>
+        <div class="tags"><span class="tag">RUC</span><span class="tag">Decreto 1072</span><span class="tag">ARL</span></div>
+      </div>
+      <div class="project-card">
+        <div class="project-header"><div class="project-icon"><i class="fas fa-shield-virus"></i></div><span class="status-live">Implementado</span></div>
+        <h3>Fortalecimiento del SG-SST</h3>
+        <p>Lideré el diseño, implementación y seguimiento del Sistema de Gestión de Seguridad y Salud en el Trabajo, garantizando el cumplimiento del Decreto 1072 de 2015 y la Resolución 0312 de 2019, mediante estrategias orientadas a la prevención y la mejora continua.</p>
+        <div class="tags"><span class="tag">SG-SST</span><span class="tag">Decreto 1072</span><span class="tag">Resolución 0312</span></div>
+      </div>
+      <div class="project-card">
+        <div class="project-header"><div class="project-icon"><i class="fas fa-balance-scale"></i></div><span class="status-live">Certificado</span></div>
+        <h3>Cumplimiento Legal HSEQ</h3>
+        <p>Implementé procesos de identificación, evaluación y seguimiento de requisitos legales aplicables, fortaleciendo el cumplimiento normativo y la gestión preventiva de las organizaciones.</p>
+        <div class="tags"><span class="tag">Cumplimiento Legal</span><span class="tag">HSEQ</span><span class="tag">Riesgos</span></div>
+      </div>
+      <div class="project-card">
+        <div class="project-header"><div class="project-icon"><i class="fas fa-clipboard-check"></i></div><span class="status-live">Auditoría</span></div>
+        <h3>Aseguramiento de Sistemas de Gestión - Auditoría</h3>
+        <p>Desarrollo de auditorías de primera y segunda parte para verificar la eficacia de los Sistemas Integrados de Gestión y promover la mejora continua.</p>
+        <div class="tags"><span class="tag">Auditoría</span><span class="tag">HSEQ</span><span class="tag">Mejora continua</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="label" data-i18n="label_exp">Trayectoria profesional</div>
+    <div class="exp-layout">
+      <div>
+        <h2 data-i18n="exp_h2">Experiencia<br><em>profesional.</em></h2>
+        <div class="timeline">
+          <div class="tl-item featured">
+            <div class="tl-meta">Jul 2022 — Ene 2024</div>
+            <div class="tl-company">Rocha y Londoño S.A.S</div>
+            <div class="tl-role" data-i18n="exp1_role">Coordinadora HSEQ</div>
+            <ul class="func-list">
+              <li><i class="fas fa-cogs"></i><span data-i18n="rl_1">Diseño, administración y ejecución del Sistema de Gestión de Seguridad y Salud en el Trabajo.</span></li>
+              <li><i class="fas fa-clipboard-list"></i><span data-i18n="rl_2">Liderazgo en procesos de auditoría interna y preparación para certificaciones externas.</span></li>
+              <li><i class="fas fa-chart-line"></i><span data-i18n="rl_3">Implementación de planes de mejora continua basados en los resultados de las evaluaciones de auditoría y evaluación inicial ARL del SG-SST.</span></li>
+            </ul>
+          </div>
+          <div class="tl-item featured">
+            <div class="tl-meta">May 2020 — Jul 2022</div>
+            <div class="tl-company">P&H Company Services S.A.S</div>
+            <div class="tl-role" data-i18n="exp2_role">Coordinadora HSEQ</div>
+            <ul class="func-list">
+              <li><i class="fas fa-file-alt"></i><span data-i18n="ph_1">Diseño, implementación, administración y ejecución del Sistema Integrado de Gestión HSEQ, contribuyendo al cumplimiento de la certificación de las normas ISO 9001, ISO 14001, ISO 45001 y del RUC, mediante el fortalecimiento de los procesos, el seguimiento al cumplimiento normativo y la mejora continua.</span></li>
+              <li><i class="fas fa-users"></i><span data-i18n="ph_2">Coordinación de programas de capacitación, inspecciones, investigaciones de incidentes y actividades de promoción y prevención, fortaleciendo la cultura HSEQ y el compromiso del personal.</span></li>
+              <li><i class="fas fa-chart-pie"></i><span data-i18n="ph_3">Definición y seguimiento de indicadores de gestión, planes de acción y estrategias de mejora continua, contribuyendo al fortalecimiento del desempeño organizacional y la excelencia operacional.</span></li>
+              <li><i class="fas fa-shield-alt"></i><span data-i18n="ph_4">Identificación de peligros, evaluación de riesgos y requisitos legales, implementando controles para fortalecer el cumplimiento normativo y la prevención de incidentes.</span></li>
+            </ul>
+          </div>
+          <div class="tl-item">
+            <div class="tl-meta">Oct 2018 — Abr 2020</div>
+            <div class="tl-company">Dismontajes S.A.S</div>
+            <div class="tl-role" data-i18n="exp3_role">Asistente Administrativa y HSEQ</div>
+            <ul class="func-list">
+              <li><i class="fas fa-folder-open"></i><span data-i18n="dis_1">Apoyo en la administración de documentos y registros del SG-SST.</span></li>
+              <li><i class="fas fa-tasks"></i><span data-i18n="dis_2">Colaboración en la preparación de informes para auditorías internas y externas.</span></li>
+              <li><i class="fas fa-clipboard-list"></i><span data-i18n="dis_3">Ejecución de actividades de seguimiento al Sistema de Gestión, incluyendo inspecciones, identificación de peligros, evaluación de riesgos, actualización documental y verificación del cumplimiento de controles operacionales.</span></li>
+              <li><i class="fas fa-chalkboard-teacher"></i><span data-i18n="dis_4">Desarrollo de programas de capacitación, inducción, investigación de incidentes y campañas de promoción y prevención, fortaleciendo la cultura de seguridad y autocuidado.</span></li>
+              <li><i class="fas fa-search"></i><span data-i18n="dis_5">Participación en la planificación y ejecución de auditorías internas y de segunda parte, realizando el seguimiento a hallazgos y apoyando la implementación de acciones correctivas y de mejora.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Educación + Herramientas -->
+      <div>
+        <div style="margin-bottom:2rem;">
+          <div class="label" data-i18n="label_edu">Formación & Credenciales</div>
+          <div class="edu-card"><i class="fas fa-graduation-cap"></i><div><strong data-i18n="edu1_title">Profesional en Gestión de la Seguridad y Salud Laboral</strong><br><span data-i18n="edu1_school">Politécnico Gran Colombiano (2022)</span> · <span data-i18n="edu1_license">Licencia SST vigente</span></div></div>
+          <div class="edu-card"><i class="fas fa-university"></i><div><strong data-i18n="edu2_title">Tecnóloga en Seguridad y Salud en el Trabajo</strong><br><span data-i18n="edu2_school">Institución Universitaria UNINPAHU (2018)</span></div></div>
+          <div class="edu-card"><i class="fas fa-file-signature"></i><div><strong data-i18n="edu3_title">Auditora Líder HSEQ (Trinorma)</strong><br><span data-i18n="edu3_school">CQR – COTECNA / Exemplar Global (2021)</span> · <span data-i18n="edu3_scope">ISO 9001, 14001, 45001, 19011</span></div></div>
+          <div class="edu-card"><i class="fas fa-shield-virus"></i><div><strong data-i18n="edu4_title">Auditora RUC y Decreto 1072</strong><br><span data-i18n="edu4_school">Consejo Colombiano de Seguridad (CCS) - (2023)</span></div></div>
+          <div class="edu-card"><i class="fas fa-file-contract"></i><div><strong data-i18n="edu5_title">Diplomado en Gerencia de la Calidad ISO 9001:2015</strong><br><span data-i18n="edu5_school">Politécnico de Colombia (2023)</span></div></div>
+          <div class="edu-card"><i class="fas fa-heart"></i><div><strong data-i18n="edu6_title">Diplomado en Salud Mental y Prevención del Riesgo Psicosocial</strong><br><span data-i18n="edu6_school">Consejo Colombiano de Seguridad (CCS) - (2021)</span></div></div>
+          <div class="edu-card"><i class="fas fa-hard-hat"></i><div><strong data-i18n="edu7_title">Diplomado en Tareas de Alto Riesgo</strong><br><span data-i18n="edu7_school">Politécnico de Colombia (2020)</span></div></div>
+          <div class="edu-card"><i class="fas fa-cogs"></i><div><strong data-i18n="edu8_title">Diplomado en Gestión por Procesos</strong><br><span data-i18n="edu8_school">Politécnico de Colombia (2020)</span></div></div>
+          <div class="edu-card"><i class="fas fa-brain"></i><div><strong data-i18n="edu9_title">Intervención de Factores Psicosociales</strong><br><span data-i18n="edu9_school">SENA (2019)</span></div></div>
+          <div class="edu-card"><i class="fas fa-clipboard-check"></i><div><strong data-i18n="edu10_title">Auditor Interno en el Sistema Integrado de Gestión</strong><br><span data-i18n="edu10_school">CQR - COTECNA (2019)</span> · <span data-i18n="edu10_scope">ISO 9001, 14001, 45001</span></div></div>
+          <div class="edu-card"><i class="fas fa-shield-alt"></i><div><strong data-i18n="edu11_title">Sistema de Gestión de la Seguridad y Salud en el Trabajo - SG-SST</strong><br><span data-i18n="edu11_school">SENA - SOFIA PLUS (2017 / 2024)</span> · <span data-i18n="edu11_hours">50 Horas</span></div></div>
+          <div class="edu-card"><i class="fas fa-briefcase"></i><div><strong data-i18n="edu12_title">Diplomado en Seguridad y Salud en el Trabajo</strong><br><span data-i18n="edu12_school">Politécnico de Colombia (2016)</span></div></div>
+        </div>
+        <div>
+          <div class="label" data-i18n="label_tools">Herramientas & Estándares</div>
+          <div class="tags">
+            <span class="tag">ISO 9001</span><span class="tag">ISO 14001</span><span class="tag">ISO 45001</span>
+            <span class="tag">ISO 19011</span><span class="tag">Decreto 1072</span><span class="tag">RUC</span>
+            <span class="tag">SG-SST</span><span class="tag">ARL</span><span class="tag">HSEQ</span>
+            <span class="tag">Resolución 0312</span><span class="tag">Auditoría</span><span class="tag">Mejora continua</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="label" data-i18n="label_skills">Competencias</div>
+    <h2 data-i18n="skills_h2">Dominio técnico, normativo<br><em>y liderazgo estratégico.</em></h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4 data-i18n="sg1">Sistemas de Gestión</h4>
+        <ul class="skill-list">
+          <li data-i18n="s1">Diseño, implementación y administración de SG-SST</li>
+          <li data-i18n="s2">Implementación de normas ISO (9001, 14001, 45001)</li>
+          <li data-i18n="s3">Evaluación RUC y Decreto 1072</li>
+          <li data-i18n="s4">Planes de mejora continua y acción correctiva</li>
+          <li data-i18n="s5">Auditoría Interna, de Segunda Parte y Líder Trinorma</li>
+          <li data-i18n="s6">Gestión de riesgos laborales, legales y psicosociales</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4 data-i18n="sg2">Liderazgo & Gestión</h4>
+        <ul class="skill-list">
+          <li data-i18n="t1">Liderazgo y coordinación de equipos multidisciplinarios</li>
+          <li data-i18n="t2">Planificación, organización y pensamiento estratégico</li>
+          <li data-i18n="t3">Adaptación al cambio y resolución de problemas</li>
+          <li data-i18n="t4">Comunicación asertiva y fortalecimiento cultural</li>
+          <li data-i18n="t5">Orientación a resultados y excelencia operacional</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h4 data-i18n="sg3">Normativa & Prevención</h4>
+        <ul class="skill-list">
+          <li data-i18n="l1">Conocimiento profundo de normativa colombiana (Decreto 1072, RUC, Resolución 0312)</li>
+          <li data-i18n="l2">Estándares internacionales ISO y OHSAS</li>
+          <li data-i18n="l3">Prevención e investigación de incidentes</li>
+          <li data-i18n="l4">Salud mental y factores psicosociales</li>
+          <li data-i18n="l5">Elaboración de informes técnicos, de cumplimiento y auditoría</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="label" data-i18n="label_services">Servicios</div>
+    <h2 data-i18n="services_h2">Cómo puedo aportar<br><em>a su organización.</em></h2>
+    <div class="services-grid">
+      <div class="srv-card"><div class="srv-icon"><i class="fas fa-cogs"></i></div><h3 data-i18n="srv1_title">Consultoría en SG-SST</h3><p data-i18n="srv1_desc">Diseño, implementación, administración y mantenimiento de Sistemas de Gestión de Seguridad y Salud en el Trabajo bajo normativas nacionales e internacionales.</p></div>
+      <div class="srv-card"><div class="srv-icon"><i class="fas fa-clipboard-check"></i></div><h3 data-i18n="srv2_title">Auditorías HSEQ y RUC</h3><p data-i18n="srv2_desc">Auditoría interna, de segunda parte y externa de sistemas integrados de gestión, evaluación de cumplimiento RUC y preparación para certificaciones Trinorma.</p></div>
+      <div class="srv-card"><div class="srv-icon"><i class="fas fa-chalkboard-teacher"></i></div><h3 data-i18n="srv3_title">Capacitación y Formación</h3><p data-i18n="srv3_desc">Programas de capacitación en seguridad, salud, tareas de alto riesgo, prevención de riesgos psicosociales y cultura de mejora continua.</p></div>
+      <div class="srv-card"><div class="srv-icon"><i class="fas fa-balance-scale"></i></div><h3 data-i18n="srv4_title">Mejora Continua y Certificación</h3><p data-i18n="srv4_desc">Asesoría para la certificación de empresas bajo estándares ISO, implementación de buenas prácticas, cumplimiento legal y optimización de procesos internos.</p></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="label" data-i18n="label_contact">Contacto</div>
+    <div class="exp-layout" style="grid-template-columns:1fr 1fr;">
+      <div>
+        <h2 data-i18n="contact_h2">Hablemos sobre<br><em>su próximo reto.</em></h2>
+        <p data-i18n="contact_desc">Disponible para consultorías, auditorías, implementación de sistemas de gestión y capacitación en Colombia, de forma presencial, remota o híbrida.</p>
+      </div>
+      <div>
+        <a href="mailto:valentinapiragautapaez@gmail.com" class="contact-item"><i class="fas fa-envelope"></i><div><div class="ci-label" data-i18n="email_lbl">Email</div><div class="ci-val">valentinapiragautapaez@gmail.com</div></div></a>
+        <a href="tel:+573107921199" class="contact-item"><i class="fas fa-phone"></i><div><div class="ci-label" data-i18n="phone_lbl">Teléfono</div><div class="ci-val">+57 (310) 792-1199</div></div></a>
+        <a href="https://wa.me/573107921199" target="_blank" class="contact-item"><i class="fab fa-whatsapp"></i><div><div class="ci-label">WhatsApp</div><div class="ci-val">+57 (310) 792-1199</div></div></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 Valentina Piragauta Páez — <span data-i18n="footer_role">Profesional en SST, Auditora Líder HSEQ & Auditora RUC</span></p>
+</footer>
+
+<a href="https://wa.me/573107921199" class="wa-float" target="_blank">
+  <i class="fab fa-whatsapp"></i> <span>WhatsApp</span>
+</a>
+
+<script>
+// ── TRANSLATIONS ──────────────────────────────────────────────
+const translations = {
+  es: {
+    nav_home:"Inicio",nav_about:"Perfil",nav_projects:"Logros",nav_exp:"Experiencia",
+    nav_services:"Servicios",nav_contact:"Contacto",pdf_btn:"CV PDF",
+    hero_tag:"Bogotá, Colombia · Presencial/Remoto/Híbrido",
+    hero_desc:"Profesional en Seguridad y Salud en el Trabajo (SST), Auditora Líder HSEQ (Trinorma) y Auditora RUC. Más de 8 años de experiencia en diseño, administración, mantenimiento y ejecución de sistemas integrados de gestión. Experiencia en auditorias, consultorías, gestión de riesgos, cumplimiento legal, implementación de acciones de mejora y fortalecimiento de la cultura organizacional. Me destaco por mi liderazgo, pensamiento estratégico, capacidad de análisis, planificación, organización y adaptación al cambio, orientando la gestión al cumplimiento normativo, la optimización de procesos y la mejora continua. Comprometida con la generación de valor para las organizaciones mediante soluciones integrales que fortalecen el desempeño en calidad, seguridad, salud en el trabajo y gestión ambiental, contribuyendo al logro de los objetivos estratégicos y al desarrollo de organizaciones más seguras, eficientes y sostenibles.",
+    btn_contact:"Contactar",
+    stat1:"Años en HSEQ y gestión",stat2:"Auditorías realizadas",stat3:"Empresas certificadas",
+    trust_label:"Experiencia en",
+    label_about:"Perfil profesional",
+    about_h2:"Impulsando el cumplimiento normativo,<br><em>la excelencia operacional y la mejora continua.</em>",
+    about_p1:"Profesional en Seguridad y Salud en el Trabajo, con licencia vigente, Auditora Líder HSEQ certificada por Exemplar Global (ISO 9001, ISO 14001, ISO 45001 e ISO 19011) y Auditora RUC, con más de ocho años de experiencia en el diseño, implementación, administración, mantenimiento, auditoría y mejora de Sistemas Integrados de Gestión (HSEQ).",
+    about_p2:"A lo largo de mi trayectoria he liderado procesos de auditoría, consultoría y fortalecimiento de sistemas de gestión en organizaciones de los sectores industrial, metalmecánico, manufactura, mantenimiento industrial, hidrocarburos y servicios especializados. Mi enfoque está en la implementación de buenas prácticas que van más allá del cumplimiento normativo, impulsando la cultura de prevención y mejora continua en las organizaciones.",
+    obj_label:"Objetivo:",about_obj:"Aportar mi conocimiento y experiencia en HSEQ para fortalecer los sistemas de gestión de las organizaciones, garantizar la seguridad de los trabajadores y optimizar los procesos a través de la mejora continua.",
+    focus_label:"Competencias clave",
+    focus1_title:"Diseño y administración de SG-SST",focus1_sub:"Implementación, mantenimiento y mejora de sistemas integrados de gestión bajo ISO 9001, 14001, 45001 y Decreto 1072.",
+    focus2_title:"Auditoría Líder HSEQ",focus2_sub:"Auditoría interna y externa Trinorma, evaluación de cumplimiento RUC y aplicación de estándares internacionales.",
+    focus3_title:"Liderazgo y Gestión de Equipos",focus3_sub:"Capacidad para coordinar equipos multidisciplinarios, planificación de estrategias mediante la mejora continua y fortalecimiento de la cultura organizacional.",
+    label_projects:"Logros destacados",projects_h2:"Certificaciones y proyectos<br><em>de alto impacto.</em>",
+    label_exp:"Trayectoria profesional",exp_h2:"Experiencia<br><em>profesional.</em>",
+    exp1_role:"Coordinadora HSEQ",rl_1:"Diseño, administración y ejecución del Sistema de Gestión de Seguridad y Salud en el Trabajo.",rl_2:"Liderazgo en procesos de auditoría interna y preparación para certificaciones externas.",rl_3:"Implementación de planes de mejora continua basados en los resultados de las evaluaciones de auditoría y evaluación inicial ARL del SG-SST.",
+    exp2_role:"Coordinadora HSEQ",ph_1:"Diseño, implementación, administración y ejecución del Sistema Integrado de Gestión HSEQ, contribuyendo al cumplimiento de la certificación de las normas ISO 9001, ISO 14001, ISO 45001 y del RUC, mediante el fortalecimiento de los procesos, el seguimiento al cumplimiento normativo y la mejora continua.",ph_2:"Coordinación de programas de capacitación, inspecciones, investigaciones de incidentes y actividades de promoción y prevención, fortaleciendo la cultura HSEQ y el compromiso del personal.",ph_3:"Definición y seguimiento de indicadores de gestión, planes de acción y estrategias de mejora continua, contribuyendo al fortalecimiento del desempeño organizacional y la excelencia operacional.",ph_4:"Identificación de peligros, evaluación de riesgos y requisitos legales, implementando controles para fortalecer el cumplimiento normativo y la prevención de incidentes.",
+    exp3_role:"Asistente Administrativa y HSEQ",dis_1:"Apoyo en la administración de documentos y registros del SG-SST.",dis_2:"Colaboración en la preparación de informes para auditorías internas y externas.",dis_3:"Ejecución de actividades de seguimiento al Sistema de Gestión, incluyendo inspecciones, identificación de peligros, evaluación de riesgos, actualización documental y verificación del cumplimiento de controles operacionales.",dis_4:"Desarrollo de programas de capacitación, inducción, investigación de incidentes y campañas de promoción y prevención, fortaleciendo la cultura de seguridad y autocuidado.",dis_5:"Participación en la planificación y ejecución de auditorías internas y de segunda parte, realizando el seguimiento a hallazgos y apoyando la implementación de acciones correctivas y de mejora.",
+    label_edu:"Formación & Credenciales",
+    edu1_title:"Profesional en Gestión de la Seguridad y Salud Laboral",edu1_school:"Politécnico Gran Colombiano (2022)",edu1_license:"Licencia SST vigente",
+    edu2_title:"Tecnóloga en Seguridad y Salud en el Trabajo",edu2_school:"Institución Universitaria UNINPAHU (2018)",
+    edu3_title:"Auditora Líder HSEQ (Trinorma)",edu3_school:"CQR – COTECNA / Exemplar Global (2021)",edu3_scope:"ISO 9001, 14001, 45001, 19011",
+    edu4_title:"Auditora RUC y Decreto 1072",edu4_school:"Consejo Colombiano de Seguridad (CCS) - (2023)",
+    edu5_title:"Diplomado en Gerencia de la Calidad ISO 9001:2015",edu5_school:"Politécnico de Colombia (2023)",
+    edu6_title:"Diplomado en Salud Mental y Prevención del Riesgo Psicosocial",edu6_school:"Consejo Colombiano de Seguridad (CCS) - (2021)",
+    edu7_title:"Diplomado en Tareas de Alto Riesgo",edu7_school:"Politécnico de Colombia (2020)",
+    edu8_title:"Diplomado en Gestión por Procesos",edu8_school:"Politécnico de Colombia (2020)",
+    edu9_title:"Intervención de Factores Psicosociales",edu9_school:"SENA (2019)",
+    edu10_title:"Auditor Interno en el Sistema Integrado de Gestión",edu10_school:"CQR - COTECNA (2019)",edu10_scope:"ISO 9001, 14001, 45001",
+    edu11_title:"Sistema de Gestión de la Seguridad y Salud en el Trabajo - SG-SST",edu11_school:"SENA - SOFIA PLUS (2017 / 2024)",edu11_hours:"50 Horas",
+    edu12_title:"Diplomado en Seguridad y Salud en el Trabajo",edu12_school:"Politécnico de Colombia (2016)",
+    label_tools:"Herramientas & Estándares",
+    label_skills:"Competencias",skills_h2:"Dominio técnico, normativo<br><em>y liderazgo estratégico.</em>",
+    sg1:"Sistemas de Gestión",sg2:"Liderazgo & Gestión",sg3:"Normativa & Prevención",
+    s1:"Diseño, implementación y administración de SG-SST",s2:"Implementación de normas ISO (9001, 14001, 45001)",s3:"Evaluación RUC y Decreto 1072",
+    s4:"Planes de mejora continua y acción correctiva",s5:"Auditoría Interna, de Segunda Parte y Líder Trinorma",s6:"Gestión de riesgos laborales, legales y psicosociales",
+    t1:"Liderazgo y coordinación de equipos multidisciplinarios",t2:"Planificación, organización y pensamiento estratégico",t3:"Adaptación al cambio y resolución de problemas",
+    t4:"Comunicación asertiva y fortalecimiento cultural",t5:"Orientación a resultados y excelencia operacional",
+    l1:"Conocimiento profundo de normativa colombiana (Decreto 1072, RUC, Resolución 0312)",l2:"Estándares internacionales ISO y OHSAS",l3:"Prevención e investigación de incidentes",
+    l4:"Salud mental y factores psicosociales",l5:"Elaboración de informes técnicos, de cumplimiento y auditoría",
+    label_services:"Servicios",services_h2:"Cómo puedo aportar<br><em>a su organización.</em>",
+    srv1_title:"Consultoría en SG-SST",srv1_desc:"Diseño, implementación, administración y mantenimiento de Sistemas de Gestión de Seguridad y Salud en el Trabajo bajo normativas nacionales e internacionales.",
+    srv2_title:"Auditorías HSEQ y RUC",srv2_desc:"Auditoría interna, de segunda parte y externa de sistemas integrados de gestión, evaluación de cumplimiento RUC y preparación para certificaciones Trinorma.",
+    srv3_title:"Capacitación y Formación",srv3_desc:"Programas de capacitación en seguridad, salud, tareas de alto riesgo, prevención de riesgos psicosociales y cultura de mejora continua.",
+    srv4_title:"Mejora Continua y Certificación",srv4_desc:"Asesoría para la certificación de empresas bajo estándares ISO, implementación de buenas prácticas, cumplimiento legal y optimización de procesos internos.",
+    label_contact:"Contacto",contact_h2:"Hablemos sobre<br><em>su próximo reto.</em>",
+    contact_desc:"Disponible para consultorías, auditorías, implementación de sistemas de gestión y capacitación en Colombia, de forma presencial, remota o híbrida.",
+    email_lbl:"Email",phone_lbl:"Teléfono",
+    footer_role:"Profesional en SST, Auditora Líder HSEQ & Auditora RUC",
+    msg_ok:"¡Gracias! Me pondré en contacto pronto.",msg_err:"Por favor completa todos los campos."
+  },
+  en: {
+    nav_home:"Home",nav_about:"Profile",nav_projects:"Achievements",nav_exp:"Experience",
+    nav_services:"Services",nav_contact:"Contact",pdf_btn:"CV PDF",
+    hero_tag:"Bogotá, Colombia · On-site/Remote/Hybrid",
+    hero_desc:"Professional in Occupational Health and Safety (OHS), HSEQ Lead Auditor (Trinorma) and RUC Auditor. Over 8 years of experience in design, administration, maintenance and execution of integrated management systems. Experience in auditing, consulting, risk management, legal compliance, implementation of improvement actions and strengthening of organizational culture. I stand out for my leadership, strategic thinking, analytical capacity, planning, organization and adaptability to change, guiding management towards regulatory compliance, process optimization and continuous improvement. Committed to generating value for organizations through comprehensive solutions that strengthen performance in quality, safety, occupational health and environmental management, contributing to the achievement of strategic objectives and the development of safer, more efficient and sustainable organizations.",
+    btn_contact:"Contact me",
+    stat1:"Years in HSEQ & management",stat2:"Audits performed",stat3:"Companies certified",
+    trust_label:"Experience with",
+    label_about:"Professional profile",
+    about_h2:"Driving regulatory compliance,<br><em>operational excellence and continuous improvement.</em>",
+    about_p1:"Professional in Occupational Health and Safety, with active license, HSEQ Lead Auditor certified by Exemplar Global (ISO 9001, ISO 14001, ISO 45001 and ISO 19011) and RUC Auditor, with over eight years of experience in the design, implementation, administration, maintenance, auditing and improvement of Integrated Management Systems (HSEQ).",
+    about_p2:"Throughout my career I have led auditing, consulting and management system strengthening processes in organizations in the industrial, metalworking, manufacturing, industrial maintenance, hydrocarbon and specialized services sectors. My focus is on the implementation of good practices that go beyond regulatory compliance, promoting a culture of prevention and continuous improvement in organizations.",
+    obj_label:"Objective:",about_obj:"Contribute my knowledge and experience in HSEQ to strengthen organizations' management systems, ensure worker safety and optimize processes through continuous improvement.",
+    focus_label:"Key competencies",
+    focus1_title:"SG-SST Design and Administration",focus1_sub:"Implementation, maintenance and improvement of integrated management systems under ISO 9001, 14001, 45001 and Decree 1072.",
+    focus2_title:"HSEQ Lead Auditor",focus2_sub:"Internal and external Trinorma auditing, RUC compliance evaluation and application of international standards.",
+    focus3_title:"Leadership and Team Management",focus3_sub:"Ability to coordinate multidisciplinary teams, strategic planning through continuous improvement and strengthening of organizational culture.",
+    label_projects:"Key Achievements",projects_h2:"Certifications and projects<br><em>of high impact.</em>",
+    label_exp:"Professional history",exp_h2:"Professional<br><em>experience.</em>",
+    exp1_role:"HSEQ Coordinator",rl_1:"Design, administration and execution of the Occupational Health and Safety Management System.",rl_2:"Leadership in internal audit processes and preparation for external certifications.",rl_3:"Implementation of continuous improvement plans based on the results of audits and the initial ARL evaluation of the SG-SST.",
+    exp2_role:"HSEQ Coordinator",ph_1:"Design, implementation, administration and execution of the HSEQ Integrated Management System, contributing to compliance with certification of ISO 9001, ISO 14001, ISO 45001 and RUC standards, through process strengthening, regulatory compliance monitoring and continuous improvement.",ph_2:"Coordination of training programs, inspections, incident investigations and promotion and prevention activities, strengthening the HSEQ culture and staff commitment.",ph_3:"Definition and monitoring of management indicators, action plans and continuous improvement strategies, contributing to the strengthening of organizational performance and operational excellence.",ph_4:"Hazard identification, risk and legal requirements assessment, implementing controls to strengthen regulatory compliance and incident prevention.",
+    exp3_role:"Administrative and HSEQ Assistant",dis_1:"Support in the administration of SG-SST documents and records.",dis_2:"Collaboration in preparing reports for internal and external audits.",dis_3:"Execution of follow-up activities to the Management System, including inspections, hazard identification, risk assessment, documentary updates and verification of operational controls compliance.",dis_4:"Development of training programs, induction, incident investigation and promotion and prevention campaigns, strengthening the culture of safety and self-care.",dis_5:"Participation in the planning and execution of internal and second-party audits, following up on findings and supporting the implementation of corrective and improvement actions.",
+    label_edu:"Education & Credentials",
+    edu1_title:"Professional in Occupational Health and Safety Management",edu1_school:"Politécnico Gran Colombiano (2022)",edu1_license:"Active OHS license",
+    edu2_title:"Technologist in Occupational Health and Safety",edu2_school:"UNINPAHU University Institution (2018)",
+    edu3_title:"HSEQ Lead Auditor (Trinorma)",edu3_school:"CQR – COTECNA / Exemplar Global (2021)",edu3_scope:"ISO 9001, 14001, 45001, 19011",
+    edu4_title:"RUC and Decree 1072 Auditor",edu4_school:"Colombian Safety Council (CCS) - (2023)",
+    edu5_title:"Diploma in Quality Management ISO 9001:2015",edu5_school:"Politécnico de Colombia (2023)",
+    edu6_title:"Diploma in Mental Health and Psychosocial Risk Prevention",edu6_school:"Colombian Safety Council (CCS) - (2021)",
+    edu7_title:"Diploma in High-Risk Tasks",edu7_school:"Politécnico de Colombia (2020)",
+    edu8_title:"Diploma in Process Management",edu8_school:"Politécnico de Colombia (2020)",
+    edu9_title:"Psychosocial Factors Intervention",edu9_school:"SENA (2019)",
+    edu10_title:"Internal Auditor in Integrated Management System",edu10_school:"CQR - COTECNA (2019)",edu10_scope:"ISO 9001, 14001, 45001",
+    edu11_title:"Occupational Health and Safety Management System - SG-SST",edu11_school:"SENA - SOFIA PLUS (2017 / 2024)",edu11_hours:"50 Hours",
+    edu12_title:"Diploma in Occupational Health and Safety",edu12_school:"Politécnico de Colombia (2016)",
+    label_tools:"Tools & Standards",
+    label_skills:"Skills",skills_h2:"Technical, regulatory<br><em>and strategic leadership.</em>",
+    sg1:"Management Systems",sg2:"Leadership & Management",sg3:"Regulations & Prevention",
+    s1:"Design, implementation and administration of SG-SST",s2:"Implementation of ISO standards (9001, 14001, 45001)",s3:"RUC and Decree 1072 Evaluation",
+    s4:"Continuous improvement and corrective action plans",s5:"Internal, Second-Party and Lead Trinorma Auditor",s6:"Occupational, legal and psychosocial risk management",
+    t1:"Leadership and coordination of multidisciplinary teams",t2:"Planning, organization and strategic thinking",t3:"Adaptability to change and problem solving",
+    t4:"Assertive communication and cultural strengthening",t5:"Results orientation and operational excellence",
+    l1:"Deep knowledge of Colombian regulations (Decree 1072, RUC, Resolution 0312)",l2:"International ISO and OHSAS standards",l3:"Incident prevention and investigation",
+    l4:"Mental health and psychosocial factors",l5:"Preparation of technical, compliance and audit reports",
+    label_services:"Services",services_h2:"How I can contribute<br><em>to your organization.</em>",
+    srv1_title:"SG-SST Consulting",srv1_desc:"Design, implementation, administration and maintenance of Occupational Health and Safety Management Systems under national and international regulations.",
+    srv2_title:"HSEQ and RUC Audits",srv2_desc:"Internal, second-party and external auditing of integrated management systems, RUC compliance evaluation and preparation for Trinorma certifications.",
+    srv3_title:"Training and Education",srv3_desc:"Training programs in safety, health, high-risk tasks, psychosocial risk prevention and continuous improvement culture.",
+    srv4_title:"Continuous Improvement and Certification",srv4_desc:"Advisory for company certification under ISO standards, implementation of good practices, legal compliance and optimization of internal processes.",
+    label_contact:"Contact",contact_h2:"Let's talk about<br><em>your next challenge.</em>",
+    contact_desc:"Available for consulting, auditing, management system implementation and training in Colombia, on-site, remote or hybrid.",
+    email_lbl:"Email",phone_lbl:"Phone",
+    footer_role:"OHS Professional, HSEQ Lead Auditor & RUC Auditor",
+    msg_ok:"Thank you! I will get in touch soon.",msg_err:"Please complete all fields."
+  }
+};
+
+// ── LANGUAGE ──────────────────────────────────────────────────
+let currentLang = 'es';
+function setLanguage(lang) {
+  currentLang = lang;
+  const t = translations[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (!t[key]) return;
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = t[key];
+    else el.innerHTML = t[key];
+  });
+  document.getElementById('logoPrefix').innerHTML  = lang === 'es' ? 'Prof.' : 'Prof.';
+  document.getElementById('logoSuffix').innerHTML  = lang === 'es' ? '— HSEQ, Auditoría & Gestión de Riesgos' : '— HSEQ, Auditing & Risk Management';
+  document.getElementById('langToggle').innerHTML  = lang === 'es' ? 'EN' : 'ES';
+  document.documentElement.lang = lang;
+}
+document.getElementById('langToggle').addEventListener('click', () => setLanguage(currentLang === 'es' ? 'en' : 'es'));
+setLanguage('es');
+
+// ── TYPED ────────────────────────────────────────────────────
+const phrasesTy = ['Especialista en HSEQ y Auditoría Trinorma', 'Coordinadora HSEQ · Líder en Seguridad Laboral', 'Auditora RUC · Gestión de Riesgos', 'Profesional en SST · Mejora Continua'];
+let idxTy = 0, ciTy = 0, ctTy = '';
+const typedEl = document.getElementById('typedText');
+function type() {
+  if (ciTy < phrasesTy[idxTy].length) { ctTy += phrasesTy[idxTy][ciTy++]; typedEl.textContent = ctTy; setTimeout(type, 55); }
+  else { setTimeout(() => { idxTy = (idxTy + 1) % phrasesTy.length; ctTy = ''; ciTy = 0; type(); }, 2500); }
+}
+type();
+
+// ── DARK MODE ────────────────────────────────────────────────
+document.getElementById('themeToggle').addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  const i = document.querySelector('#themeToggle i');
+  i.classList.toggle('fa-moon'); i.classList.toggle('fa-sun');
+});
+
+// ── MOBILE MENU ──────────────────────────────────────────────
+document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
+
+// ── SMOOTH SCROLL ────────────────────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+  const h = a.getAttribute('href');
+  if (h && h !== '#') { e.preventDefault(); document.querySelector(h)?.scrollIntoView({ behavior: 'smooth' }); }
+}));
+
+// ── SCROLL PROGRESS + ACTIVE NAV ─────────────────────────────
+const scrollBar  = document.getElementById('scrollBar');
+const sections   = document.querySelectorAll('section[id]');
+const navAs      = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  const total    = document.body.scrollHeight - window.innerHeight;
+  scrollBar.style.width = (total > 0 ? (scrolled / total * 100) : 0) + '%';
+  let current = '';
+  sections.forEach(sec => { if (scrolled >= sec.offsetTop - 80) current = sec.id; });
+  navAs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
+}, { passive: true });
+
+// ── PDF ──────────────────────────────────────────────────────
+async function downloadPDF() {
+  const overlay = document.getElementById('pdfOverlay');
+  const pdfMsg  = document.getElementById('pdfMsg');
+  const isDark  = document.body.classList.contains('dark');
+  overlay.classList.add('show');
+  pdfMsg.textContent = 'Preparando documento...';
+
+  if (isDark) document.body.classList.remove('dark');
+
+  const uiEls = document.querySelectorAll('.navbar,.wa-float,.hero-actions,.trust-bar,footer,.nav-controls,#scrollBar');
+  uiEls.forEach(el => { el._pdfDisplay = el.style.display; el.style.setProperty('display','none','important'); });
+
+  const mainEl   = document.querySelector('main');
+  const origPad  = mainEl.style.paddingTop;
+  mainEl.style.paddingTop = '0';
+
+  const styleTag = document.createElement('style');
+  styleTag.id = 'pdf-boost';
+  styleTag.textContent = `
+    body{font-size:1.1rem!important;}
+    .hero-name{font-size:2.8rem!important;}
+    h2{font-size:1.7rem!important;}
+    h3{font-size:1rem!important;}
+    p,.func-list li,.edu-card span,.focus-item span{font-size:0.9rem!important;}
+    .tag,.badge-license,.tl-meta,.label{font-size:0.78rem!important;}
+    .stat-number{font-size:1.8rem!important;}
+  `;
+  document.head.appendChild(styleTag);
+  await new Promise(r => setTimeout(r, 150));
+
+  try {
+    const { jsPDF } = window.jspdf;
+    const pdf     = new jsPDF({ orientation:'portrait', unit:'mm', format:'a4' });
+    const A4W     = 210, A4H = 297, M = 8, HDRH = 9;
+    const imgW    = A4W - M * 2;
+    const avail   = A4H - HDRH - M * 2;
+    const SCALE   = 2.2;
+
+    const groups = [
+      { label: currentLang === 'es' ? 'Perfil & Sobre mí'         : 'Profile & About',           ids: ['home','about']       },
+      { label: currentLang === 'es' ? 'Logros & Competencias'      : 'Achievements & Skills',     ids: ['projects','skills']  },
+      { label: currentLang === 'es' ? 'Experiencia Profesional'    : 'Professional Experience',   ids: ['experience']         },
+      { label: currentLang === 'es' ? 'Servicios & Contacto'       : 'Services & Contact',        ids: ['services','contact'] },
+    ];
+
+    for (let gi = 0; gi < groups.length; gi++) {
+      const grp = groups[gi];
+      pdfMsg.textContent = `Página ${gi+1} de ${groups.length}...`;
+
+      const wrapper = document.createElement('div');
+      wrapper.style.cssText = 'background:#fff;padding:0;width:1200px;';
+      for (const sid of grp.ids) {
+        const sec = document.getElementById(sid);
+        if (!sec) continue;
+        const clone = sec.cloneNode(true);
+        clone.style.marginBottom = '2rem';
+        wrapper.appendChild(clone);
+      }
+      document.body.appendChild(wrapper);
+
+      const canvas = await html2canvas(wrapper, {
+        scale: SCALE, useCORS: true, allowTaint: true,
+        backgroundColor: '#ffffff', logging: false,
+        width: 1200, windowWidth: 1200,
+        onclone: function(doc) {
+          const imgs = doc.querySelectorAll('img');
+          imgs.forEach(img => {
+            img.crossOrigin = 'anonymous';
+          });
+        }
+      });
+      document.body.removeChild(wrapper);
+
+      if (gi > 0) pdf.addPage();
+
+      pdf.setFillColor(124,58,237);
+      pdf.rect(0,0,A4W,HDRH,'F');
+      pdf.setFont('helvetica','bold'); pdf.setFontSize(7); pdf.setTextColor(255,255,255);
+      pdf.text(grp.label, M, 6);
+      pdf.setFont('helvetica','normal'); pdf.setFontSize(6.5); pdf.setTextColor(237,233,254);
+      pdf.text('Valentina Piragauta Páez', A4W - M, 6, { align:'right' });
+
+      const naturalH = (canvas.height / canvas.width) * imgW;
+      const finalH   = Math.min(naturalH, avail);
+      const imgData  = canvas.toDataURL('image/jpeg', 0.92);
+      pdf.addImage(imgData, 'JPEG', M, HDRH + M * 0.5, imgW, finalH);
+
+      pdf.setDrawColor(237,233,254); pdf.setLineWidth(0.3);
+      pdf.line(M, A4H-7, A4W-M, A4H-7);
+      pdf.setFont('helvetica','normal'); pdf.setFontSize(6); pdf.setTextColor(126,107,176);
+      pdf.text(`${currentLang==='es'?'Página':'Page'} ${gi+1} / ${groups.length}  ·  valentinapiragautapaez@gmail.com  ·  +57 (310) 792-1199`,
+        A4W/2, A4H-3.5, { align:'center' });
+    }
+
+    pdf.save(currentLang==='es' ? 'CV_Valentina_Piragauta_HSEQ.pdf' : 'CV_Valentina_Piragauta_HSEQ_EN.pdf');
+
+  } catch(err) {
+    console.error(err);
+    alert(currentLang==='es' ? 'Error al generar PDF.' : 'PDF generation error.');
+  } finally {
+    document.getElementById('pdf-boost')?.remove();
+    uiEls.forEach(el => { el.style.removeProperty('display'); if (el._pdfDisplay) el.style.display = el._pdfDisplay; delete el._pdfDisplay; });
+    mainEl.style.paddingTop = origPad;
+    if (isDark) document.body.classList.add('dark');
+    overlay.classList.remove('show');
+  }
+}
+
+document.getElementById('pdfBtn').addEventListener('click', downloadPDF);
+document.getElementById('pdfBtnHero').addEventListener('click', downloadPDF);
+</script>
+<script>
+(function() {
+  function initTimelineAnimation() {
+    const timeline = document.querySelector('.timeline');
+    const items = document.querySelectorAll('.tl-item');
+    if (!timeline || items.length === 0) return;
+
+    let style = document.getElementById('timeline-animation-style');
+    if (!style) {
+      style = document.createElement('style');
+      style.id = 'timeline-animation-style';
+      style.textContent = `
+        .timeline {
+          --line-height: 0%;
+        }
+        .timeline::before {
+          height: var(--line-height) !important;
+          transition: height 0.4s ease-out !important;
+        }
+        .tl-item.in-view::before {
+          background: var(--accent) !important;
+          box-shadow: 0 0 0 3px rgba(124,58,237,0.3) !important;
+          transform: scale(1.3) !important;
+          transition: all 0.3s ease !important;
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
+    function updateTimeline() {
+      const winHeight = window.innerHeight;
+      let maxVisibleIndex = -1;
+      
+      items.forEach((item, index) => {
+        const rect = item.getBoundingClientRect();
+        const isVisible = rect.top < winHeight - 80 && rect.bottom > 80;
+        if (isVisible) {
+          item.classList.add('in-view');
+          if (index > maxVisibleIndex) maxVisibleIndex = index;
+        }
+      });
+      
+      if (maxVisibleIndex >= 0) {
+        const progress = (maxVisibleIndex + 1) / items.length;
+        timeline.style.setProperty('--line-height', `${progress * 100}%`);
+      }
+    }
+
+    window.addEventListener('scroll', updateTimeline);
+    window.addEventListener('resize', updateTimeline);
+    updateTimeline();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTimelineAnimation);
+  } else {
+    initTimelineAnimation();
+  }
+})();
+</script>
+</body>
+</html>
