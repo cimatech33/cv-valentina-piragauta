@@ -389,27 +389,6 @@ footer {
 <body>
 
 <div id="scrollBar"></div>
-<div id="pdfOverlay"><div class="spinner"></div><p id="pdfMsg">Generando PDF...</p></div>
-
-<nav class="navbar">
-  <div class="nav-inner">
-    <div class="logo"><span class="logo-prefix">Prof.</span> Valentina Piragauta <span class="logo-suffix">— HSEQ, Auditoría & Gestión de Riesgos</span></div>
-    <div class="nav-links" id="navLinks">
-      <a href="#home"       data-i18n="nav_home">Inicio</a>
-      <a href="#about"      data-i18n="nav_about">Perfil</a>
-      <a href="#projects"   data-i18n="nav_projects">Logros</a>
-      <a href="#experience" data-i18n="nav_exp">Experiencia</a>
-      <a href="#services"   data-i18n="nav_services">Servicios</a>
-      <a href="#contact"    data-i18n="nav_contact">Contacto</a>
-    </div>
-    <div class="nav-controls">
-      <button class="nav-btn" id="pdfBtn"><i class="fas fa-file-pdf"></i> <span data-i18n="pdf_btn">CV PDF</span></button>
-      <button class="nav-btn" id="langToggle">EN</button>
-      <button class="nav-btn" id="themeToggle"><i class="fas fa-moon"></i></button>
-      <button class="nav-btn menu-icon" id="menuToggle"><i class="fas fa-bars"></i></button>
-    </div>
-  </div>
-</nav>
 
 <main>
   <!-- HERO -->
@@ -424,8 +403,7 @@ footer {
       <div class="typed-wrap"><span class="typed-line"><span id="typedText"></span><span class="cursor"></span></span></div>
       <p class="hero-desc" data-i18n="hero_desc">Profesional en Seguridad y Salud en el Trabajo (SST), Auditora Líder HSEQ (Trinorma) y Auditora RUC. Más de 8 años de experiencia en diseño, administración, mantenimiento y ejecución de sistemas integrados de gestión. Experiencia en auditorias, consultorías, gestión de riesgos, cumplimiento legal, implementación de acciones de mejora y fortalecimiento de la cultura organizacional. Me destaco por mi liderazgo, pensamiento estratégico, capacidad de análisis, planificación, organización y adaptación al cambio, orientando la gestión al cumplimiento normativo, la optimización de procesos y la mejora continua. Comprometida con la generación de valor para las organizaciones mediante soluciones integrales que fortalecen el desempeño en calidad, seguridad, salud en el trabajo y gestión ambiental, contribuyendo al logro de los objetivos estratégicos y al desarrollo de organizaciones más seguras, eficientes y sostenibles.</p>
       <div class="hero-actions">
-        <a href="#contact" class="btn btn-primary" data-i18n="btn_contact"><i class="fas fa-paper-plane"></i> Contactar</a>
-        <button id="pdfBtnHero" class="btn btn-outline"><i class="fas fa-file-pdf"></i> <span data-i18n="pdf_btn">CV PDF</span></button>
+        <a href="#contact" class="btn btn-primary" data-i18n="btn_contact"><i class="fas fa-paper-plane"></i> Contactar</a>        
       </div>
     </div>
     <div class="stats">
@@ -785,13 +763,6 @@ function type() {
   else { setTimeout(() => { idxTy = (idxTy + 1) % phrasesTy.length; ctTy = ''; ciTy = 0; type(); }, 2500); }
 }
 type();
-
-// ── DARK MODE ────────────────────────────────────────────────
-document.getElementById('themeToggle').addEventListener('click', () => {
-  document.body.classList.toggle('dark');
-  const i = document.querySelector('#themeToggle i');
-  i.classList.toggle('fa-moon'); i.classList.toggle('fa-sun');
-});
 
 // ── MOBILE MENU ──────────────────────────────────────────────
 document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
