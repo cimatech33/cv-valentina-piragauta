@@ -7,35 +7,21 @@
 <title>Valentina Piragauta · HSEQ · Auditoría · Gestión de Riesgos</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
 :root {
   --bg: #ffffff;
   --surface: #ffffff;
-  --surface-2: #f5f3ff; /* Tono morado muy suave */
+  --surface-2: #f5f3ff;
   --surface-3: #ede9fe;
   --text: #1e1b4b;
   --text-soft: #4c1d95;
   --text-muted: #7e6bb0;
-  --accent: #7C3AED; /* Morado Real */
+  --accent: #7C3AED;
   --accent-2: #8B5CF6;
   --border: #ede9fe;
   --radius-card: 20px;
   --radius-sm: 8px;
-  --transition: background 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
-}
-body.dark {
-  --bg: #140a1c;
-  --surface: #140a1c;
-  --surface-2: #1e1b4b;
-  --surface-3: #2e2a5e;
-  --text: #f0edfe;
-  --text-soft: #c4b5fd;
-  --text-muted: #8b7cbd;
-  --accent: #8B5CF6;
-  --accent-2: #A78BFA;
-  --border: #312e81;
+  --transition: background 0.3s, color 0.3s, border-color 0.3s;
 }
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior:smooth; }
@@ -47,15 +33,11 @@ body {
   transition: var(--transition);
   -webkit-font-smoothing: antialiased;
 }
-
-/* ── SCROLL PROGRESS ── */
 #scrollBar {
   position: fixed; top: 0; left: 0; height: 3px; width: 0%;
   background: var(--accent); z-index: 2000;
   transition: width 0.1s linear;
 }
-
-/* ── NAVBAR ── */
 .navbar {
   position: fixed; top: 0; width: 100%; z-index: 1000;
   background: rgba(255,255,255,0.94);
@@ -63,7 +45,6 @@ body {
   border-bottom: 1px solid var(--border);
   transition: var(--transition);
 }
-body.dark .navbar { background: rgba(20,10,28,0.94); }
 .nav-inner {
   max-width: 1200px; margin: 0 auto; padding: 0 2rem;
   height: 64px; display: flex; align-items: center; justify-content: space-between;
@@ -102,12 +83,8 @@ body.dark .navbar { background: rgba(20,10,28,0.94); }
   .nav-links.open { display: flex; }
   .menu-icon { display: block; }
 }
-
-/* ── LAYOUT ── */
 main { max-width: 1200px; margin: 0 auto; padding: 80px 2rem 2rem; }
 section { margin-bottom: 5rem; }
-
-/* ── TYPOGRAPHY ── */
 h2 {
   font-family: 'DM Serif Display', serif;
   font-size: 2rem; margin-bottom: 1.5rem;
@@ -122,8 +99,6 @@ p { color: var(--text-soft); }
   text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem;
 }
 .label::before { content: ''; width: 24px; height: 2px; background: var(--accent); display: block; }
-
-/* ── HERO ── */
 .hero {
   display: grid; grid-template-columns: auto 1fr 300px; gap: 2.5rem;
   align-items: center; margin-bottom: 2rem;
@@ -172,19 +147,6 @@ p { color: var(--text-soft); }
 .stat-card:hover { border-color: var(--accent); transform: translateY(-2px); }
 .stat-number { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--accent); line-height: 1; }
 .stat-label { font-size: 0.75rem; color: var(--text-muted); font-weight: 500; margin-top: 0.25rem; }
-
-/* ── TRUST BAR ── */
-.trust-bar {
-  display: flex; align-items: center; gap: 0; overflow-x: auto;
-  padding: 1.2rem 0; border-bottom: 1px solid var(--border); margin-bottom: 3rem;
-  scrollbar-width: none;
-}
-.trust-bar::-webkit-scrollbar { display: none; }
-.trust-label { font-size: 0.68rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; white-space: nowrap; margin-right: 1.5rem; }
-.trust-sep { width: 1px; height: 16px; background: var(--border); margin: 0 1.2rem; flex-shrink: 0; }
-.trust-item { font-size: 0.8rem; font-weight: 600; color: var(--text-soft); white-space: nowrap; opacity: 0.8; }
-
-/* ── ABOUT ── */
 .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
 .highlight-box {
   background: var(--surface-2); border-left: 3px solid var(--accent);
@@ -205,8 +167,6 @@ p { color: var(--text-soft); }
 }
 .focus-item strong { font-size: 0.875rem; color: var(--text); }
 .focus-item span { font-size: 0.8rem; color: var(--text-muted); }
-
-/* ── PROJECTS ── */
 .projects-grid {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem; margin-top: 1.5rem;
@@ -231,14 +191,10 @@ p { color: var(--text-soft); }
 }
 .status-live { background: rgba(34,197,94,0.12); color: #16a34a; padding: 3px 10px; border-radius: 6px; font-size: 0.68rem; font-weight: 700; }
 .status-dev { background: rgba(99,102,241,0.12); color: #6366f1; padding: 3px 10px; border-radius: 6px; font-size: 0.68rem; font-weight: 700; }
-body.dark .status-live { background: rgba(34,197,94,0.15); color: #4ade80; }
-body.dark .status-dev  { background: rgba(99,102,241,0.15); color: #a5b4fc; }
 .project-card h3 { margin-bottom: 0.5rem; }
 .project-card p { font-size: 0.85rem; line-height: 1.65; margin-top: 0.4rem; }
 .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
 .tag { background: var(--surface-3); border: 1px solid var(--border); padding: 3px 10px; border-radius: 6px; font-size: 0.68rem; font-weight: 600; color: var(--text-muted); transition: var(--transition); }
-
-/* ── EXPERIENCE ── */
 .exp-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
 .timeline { position: relative; padding-left: 1.5rem; }
 .timeline::before {
@@ -268,8 +224,6 @@ body.dark .status-dev  { background: rgba(99,102,241,0.15); color: #a5b4fc; }
   font-size: 0.6rem; padding: 2px 8px; border-radius: 20px; margin-left: 0.5rem;
   font-weight: 700; letter-spacing: 0.04em;
 }
-
-/* ── EDUCATION ── */
 .edu-card {
   display: flex; gap: 1rem; background: var(--surface-2); padding: 1rem 1.1rem;
   border-radius: 14px; margin-bottom: 0.9rem; border: 1px solid var(--border);
@@ -279,8 +233,6 @@ body.dark .status-dev  { background: rgba(99,102,241,0.15); color: #a5b4fc; }
 .edu-card > i { color: var(--accent); margin-top: 2px; width: 16px; text-align: center; flex-shrink: 0; }
 .edu-card strong { font-size: 0.88rem; color: var(--text); }
 .edu-card span { font-size: 0.8rem; color: var(--text-muted); }
-
-/* ── SKILLS ── */
 .skills-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 1.5rem; }
 .skill-group h4 {
   font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
@@ -295,8 +247,6 @@ body.dark .status-dev  { background: rgba(99,102,241,0.15); color: #a5b4fc; }
 }
 .skill-list li:last-child { border-bottom: none; }
 .skill-list li::before { content: ''; width: 4px; height: 4px; min-width: 4px; border-radius: 50%; background: var(--accent); }
-
-/* ── SERVICES ── */
 .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 1.2rem; }
 .srv-card {
   background: var(--surface-2); border: 1px solid var(--border);
@@ -312,8 +262,6 @@ body.dark .status-dev  { background: rgba(99,102,241,0.15); color: #a5b4fc; }
 }
 .srv-card h3 { margin-bottom: 0.4rem; font-size: 0.92rem; }
 .srv-card p { font-size: 0.83rem; margin: 0; }
-
-/* ── CONTACT ── */
 .contact-item {
   display: flex; align-items: center; gap: 1rem; padding: 0.85rem 0;
   border-bottom: 1px solid var(--border); text-decoration: none; color: var(--text-soft);
@@ -323,23 +271,11 @@ body.dark .status-dev  { background: rgba(99,102,241,0.15); color: #a5b4fc; }
 .contact-item i { width: 20px; color: var(--accent); text-align: center; }
 .contact-item .ci-label { font-size: 0.7rem; color: var(--text-muted); }
 .contact-item .ci-val { font-size: 0.9rem; font-weight: 600; }
-.social-row { display: flex; gap: 0.5rem; margin-top: 1.2rem; flex-wrap: wrap; }
-.social-link {
-  padding: 5px 14px; border: 1px solid var(--border); border-radius: var(--radius-sm);
-  text-decoration: none; font-size: 0.72rem; font-weight: 600; color: var(--text-muted);
-  display: flex; align-items: center; gap: 0.4rem;
-  transition: color 0.2s, border-color 0.2s;
-}
-.social-link:hover { color: var(--accent); border-color: var(--accent); }
-
-/* ── FOOTER ── */
 footer {
   text-align: center; padding: 2rem; border-top: 1px solid var(--border); margin-top: 2rem;
   font-size: 0.8rem; color: var(--text-muted);
   transition: var(--transition);
 }
-
-/* ── WA FLOAT ── */
 .wa-float {
   position: fixed; bottom: 20px; right: 20px;
   background: #22c55e; color: white; padding: 10px 18px;
@@ -349,20 +285,6 @@ footer {
 }
 .wa-float:hover { transform: translateY(-2px); }
 @media (max-width: 640px) { .wa-float span { display: none; } .wa-float { padding: 11px; border-radius: 50%; } }
-
-/* ── PDF OVERLAY ── */
-#pdfOverlay {
-  display: none; position: fixed; inset: 0; z-index: 9999;
-  background: rgba(0,0,0,0.82); backdrop-filter: blur(8px);
-  align-items: center; justify-content: center; flex-direction: column;
-  gap: 1rem; color: white;
-}
-#pdfOverlay.show { display: flex; }
-.spinner { width: 40px; height: 40px; border: 3px solid rgba(255,255,255,0.2); border-top-color: white; border-radius: 50%; animation: spin 0.8s linear infinite; }
-@keyframes spin { to { transform: rotate(360deg); } }
-#pdfOverlay p { font-size: 0.9rem; font-weight: 500; }
-
-/* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
   .hero { grid-template-columns: auto 1fr; }
   .stats { flex-direction: row; grid-column: 1 / -1; }
@@ -390,11 +312,28 @@ footer {
 
 <div id="scrollBar"></div>
 
+<nav class="navbar">
+  <div class="nav-inner">
+    <div class="logo"><span class="logo-prefix">Prof.</span> Valentina Piragauta <span class="logo-suffix">— HSEQ, Auditoría & Gestión de Riesgos</span></div>
+    <div class="nav-links" id="navLinks">
+      <a href="#home"       data-i18n="nav_home">Inicio</a>
+      <a href="#about"      data-i18n="nav_about">Perfil</a>
+      <a href="#projects"   data-i18n="nav_projects">Logros</a>
+      <a href="#experience" data-i18n="nav_exp">Experiencia</a>
+      <a href="#services"   data-i18n="nav_services">Servicios</a>
+      <a href="#contact"    data-i18n="nav_contact">Contacto</a>
+    </div>
+    <div class="nav-controls">
+      <button class="nav-btn" id="langToggle">EN</button>
+      <button class="nav-btn menu-icon" id="menuToggle"><i class="fas fa-bars"></i></button>
+    </div>
+  </div>
+</nav>
+
 <main>
-  <!-- HERO -->
   <section class="hero" id="home">
     <div class="hero-avatar">
-      <!-- CAMBIAR LA IMAGEN POR LA FOTO DE VALENTINA -->
+      <!-- 👇👇👇 AQUÍ DEBES PEGAR EL TEXTO BASE64 DE LA FOTO 👇👇👇 -->
       <img src="foto.jpg" alt="Valentina Piragauta">
     </div>
     <div>
@@ -403,7 +342,7 @@ footer {
       <div class="typed-wrap"><span class="typed-line"><span id="typedText"></span><span class="cursor"></span></span></div>
       <p class="hero-desc" data-i18n="hero_desc">Profesional en Seguridad y Salud en el Trabajo (SST), Auditora Líder HSEQ (Trinorma) y Auditora RUC. Más de 8 años de experiencia en diseño, administración, mantenimiento y ejecución de sistemas integrados de gestión. Experiencia en auditorias, consultorías, gestión de riesgos, cumplimiento legal, implementación de acciones de mejora y fortalecimiento de la cultura organizacional. Me destaco por mi liderazgo, pensamiento estratégico, capacidad de análisis, planificación, organización y adaptación al cambio, orientando la gestión al cumplimiento normativo, la optimización de procesos y la mejora continua. Comprometida con la generación de valor para las organizaciones mediante soluciones integrales que fortalecen el desempeño en calidad, seguridad, salud en el trabajo y gestión ambiental, contribuyendo al logro de los objetivos estratégicos y al desarrollo de organizaciones más seguras, eficientes y sostenibles.</p>
       <div class="hero-actions">
-        <a href="#contact" class="btn btn-primary" data-i18n="btn_contact"><i class="fas fa-paper-plane"></i> Contactar</a>        
+        <a href="#contact" class="btn btn-primary" data-i18n="btn_contact"><i class="fas fa-paper-plane"></i> Contactar</a>
       </div>
     </div>
     <div class="stats">
@@ -412,8 +351,7 @@ footer {
       <div class="stat-card"><div class="stat-number">4</div><div class="stat-label" data-i18n="stat3">Empresas certificadas</div></div>
     </div>
   </section>
- 
-  <!-- ABOUT -->
+
   <section id="about">
     <div class="label" data-i18n="label_about">Perfil profesional</div>
     <div class="about-grid">
@@ -433,7 +371,6 @@ footer {
     </div>
   </section>
 
-  <!-- PROJECTS (Logros destacados) -->
   <section id="projects">
     <div class="label" data-i18n="label_projects">Logros destacados</div>
     <h2 data-i18n="projects_h2">Certificaciones y proyectos<br><em>de alto impacto.</em></h2>
@@ -471,7 +408,6 @@ footer {
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
   <section id="experience">
     <div class="label" data-i18n="label_exp">Trayectoria profesional</div>
     <div class="exp-layout">
@@ -514,7 +450,6 @@ footer {
         </div>
       </div>
 
-      <!-- RIGHT: Educación + Herramientas -->
       <div>
         <div style="margin-bottom:2rem;">
           <div class="label" data-i18n="label_edu">Formación & Credenciales</div>
@@ -544,7 +479,6 @@ footer {
     </div>
   </section>
 
-  <!-- SKILLS -->
   <section id="skills">
     <div class="label" data-i18n="label_skills">Competencias</div>
     <h2 data-i18n="skills_h2">Dominio técnico, normativo<br><em>y liderazgo estratégico.</em></h2>
@@ -583,7 +517,6 @@ footer {
     </div>
   </section>
 
-  <!-- SERVICES -->
   <section id="services">
     <div class="label" data-i18n="label_services">Servicios</div>
     <h2 data-i18n="services_h2">Cómo puedo aportar<br><em>a su organización.</em></h2>
@@ -595,7 +528,6 @@ footer {
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact">
     <div class="label" data-i18n="label_contact">Contacto</div>
     <div class="exp-layout" style="grid-template-columns:1fr 1fr;">
@@ -604,7 +536,7 @@ footer {
         <p data-i18n="contact_desc">Disponible para consultorías, auditorías, implementación de sistemas de gestión y capacitación en Colombia, de forma presencial, remota o híbrida.</p>
       </div>
       <div>
-        <a href="mailto:valentinapiragautapaez@gmail.com" class="contact-item"><i class="fas fa-envelope"></i><div><div class="ci-label" data-i18n="email_lbl">Email</div><div class="ci-val">hseqvalentina@gmail.com</div></div></a>
+        <a href="mailto:hseqvalentina@gmail.com" class="contact-item"><i class="fas fa-envelope"></i><div><div class="ci-label" data-i18n="email_lbl">Email</div><div class="ci-val">hseqvalentina@gmail.com</div></div></a>
         <a href="tel:+573107921199" class="contact-item"><i class="fas fa-phone"></i><div><div class="ci-label" data-i18n="phone_lbl">Teléfono</div><div class="ci-val">+57 (310) 792-1199</div></div></a>
         <a href="https://wa.me/573107921199" target="_blank" class="contact-item"><i class="fab fa-whatsapp"></i><div><div class="ci-label">WhatsApp</div><div class="ci-val">+57 (310) 792-1199</div></div></a>
       </div>
@@ -621,16 +553,14 @@ footer {
 </a>
 
 <script>
-// ── TRANSLATIONS ──────────────────────────────────────────────
 const translations = {
   es: {
     nav_home:"Inicio",nav_about:"Perfil",nav_projects:"Logros",nav_exp:"Experiencia",
-    nav_services:"Servicios",nav_contact:"Contacto",pdf_btn:"CV PDF",
+    nav_services:"Servicios",nav_contact:"Contacto",
     hero_tag:"Bogotá, Colombia · Presencial/Remoto/Híbrido",
     hero_desc:"Profesional en Seguridad y Salud en el Trabajo (SST), Auditora Líder HSEQ (Trinorma) y Auditora RUC. Más de 8 años de experiencia en diseño, administración, mantenimiento y ejecución de sistemas integrados de gestión. Experiencia en auditorias, consultorías, gestión de riesgos, cumplimiento legal, implementación de acciones de mejora y fortalecimiento de la cultura organizacional. Me destaco por mi liderazgo, pensamiento estratégico, capacidad de análisis, planificación, organización y adaptación al cambio, orientando la gestión al cumplimiento normativo, la optimización de procesos y la mejora continua. Comprometida con la generación de valor para las organizaciones mediante soluciones integrales que fortalecen el desempeño en calidad, seguridad, salud en el trabajo y gestión ambiental, contribuyendo al logro de los objetivos estratégicos y al desarrollo de organizaciones más seguras, eficientes y sostenibles.",
     btn_contact:"Contactar",
     stat1:"Años en HSEQ y gestión",stat2:"Auditorías realizadas",stat3:"Empresas certificadas",
-    trust_label:"Experiencia en",
     label_about:"Perfil profesional",
     about_h2:"Impulsando el cumplimiento normativo,<br><em>la excelencia operacional y la mejora continua.</em>",
     about_p1:"Profesional en Seguridad y Salud en el Trabajo, con licencia vigente, Auditora Líder HSEQ certificada por Exemplar Global (ISO 9001, ISO 14001, ISO 45001 e ISO 19011) y Auditora RUC, con más de ocho años de experiencia en el diseño, implementación, administración, mantenimiento, auditoría y mejora de Sistemas Integrados de Gestión (HSEQ).",
@@ -675,17 +605,15 @@ const translations = {
     label_contact:"Contacto",contact_h2:"Hablemos sobre<br><em>su próximo reto.</em>",
     contact_desc:"Disponible para consultorías, auditorías, implementación de sistemas de gestión y capacitación en Colombia, de forma presencial, remota o híbrida.",
     email_lbl:"Email",phone_lbl:"Teléfono",
-    footer_role:"Profesional en SST, Auditora Líder HSEQ & Auditora RUC",
-    msg_ok:"¡Gracias! Me pondré en contacto pronto.",msg_err:"Por favor completa todos los campos."
+    footer_role:"Profesional en SST, Auditora Líder HSEQ & Auditora RUC"
   },
   en: {
     nav_home:"Home",nav_about:"Profile",nav_projects:"Achievements",nav_exp:"Experience",
-    nav_services:"Services",nav_contact:"Contact",pdf_btn:"CV PDF",
+    nav_services:"Services",nav_contact:"Contact",
     hero_tag:"Bogotá, Colombia · On-site/Remote/Hybrid",
     hero_desc:"Professional in Occupational Health and Safety (OHS), HSEQ Lead Auditor (Trinorma) and RUC Auditor. Over 8 years of experience in design, administration, maintenance and execution of integrated management systems. Experience in auditing, consulting, risk management, legal compliance, implementation of improvement actions and strengthening of organizational culture. I stand out for my leadership, strategic thinking, analytical capacity, planning, organization and adaptability to change, guiding management towards regulatory compliance, process optimization and continuous improvement. Committed to generating value for organizations through comprehensive solutions that strengthen performance in quality, safety, occupational health and environmental management, contributing to the achievement of strategic objectives and the development of safer, more efficient and sustainable organizations.",
     btn_contact:"Contact me",
     stat1:"Years in HSEQ & management",stat2:"Audits performed",stat3:"Companies certified",
-    trust_label:"Experience with",
     label_about:"Professional profile",
     about_h2:"Driving regulatory compliance,<br><em>operational excellence and continuous improvement.</em>",
     about_p1:"Professional in Occupational Health and Safety, with active license, HSEQ Lead Auditor certified by Exemplar Global (ISO 9001, ISO 14001, ISO 45001 and ISO 19011) and RUC Auditor, with over eight years of experience in the design, implementation, administration, maintenance, auditing and improvement of Integrated Management Systems (HSEQ).",
@@ -730,12 +658,10 @@ const translations = {
     label_contact:"Contact",contact_h2:"Let's talk about<br><em>your next challenge.</em>",
     contact_desc:"Available for consulting, auditing, management system implementation and training in Colombia, on-site, remote or hybrid.",
     email_lbl:"Email",phone_lbl:"Phone",
-    footer_role:"OHS Professional, HSEQ Lead Auditor & RUC Auditor",
-    msg_ok:"Thank you! I will get in touch soon.",msg_err:"Please complete all fields."
+    footer_role:"OHS Professional, HSEQ Lead Auditor & RUC Auditor"
   }
 };
 
-// ── LANGUAGE ──────────────────────────────────────────────────
 let currentLang = 'es';
 function setLanguage(lang) {
   currentLang = lang;
@@ -754,7 +680,6 @@ function setLanguage(lang) {
 document.getElementById('langToggle').addEventListener('click', () => setLanguage(currentLang === 'es' ? 'en' : 'es'));
 setLanguage('es');
 
-// ── TYPED ────────────────────────────────────────────────────
 const phrasesTy = ['Especialista en HSEQ y Auditoría Trinorma', 'Coordinadora HSEQ · Líder en Seguridad Laboral', 'Auditora RUC · Gestión de Riesgos', 'Profesional en SST · Mejora Continua'];
 let idxTy = 0, ciTy = 0, ctTy = '';
 const typedEl = document.getElementById('typedText');
@@ -764,17 +689,14 @@ function type() {
 }
 type();
 
-// ── MOBILE MENU ──────────────────────────────────────────────
 document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
 document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
 
-// ── SMOOTH SCROLL ────────────────────────────────────────────
 document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
   const h = a.getAttribute('href');
   if (h && h !== '#') { e.preventDefault(); document.querySelector(h)?.scrollIntoView({ behavior: 'smooth' }); }
 }));
 
-// ── SCROLL PROGRESS + ACTIVE NAV ─────────────────────────────
 const scrollBar  = document.getElementById('scrollBar');
 const sections   = document.querySelectorAll('section[id]');
 const navAs      = document.querySelectorAll('.nav-links a');
@@ -787,124 +709,6 @@ window.addEventListener('scroll', () => {
   navAs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
 }, { passive: true });
 
-// ── PDF ──────────────────────────────────────────────────────
-async function downloadPDF() {
-  const overlay = document.getElementById('pdfOverlay');
-  const pdfMsg  = document.getElementById('pdfMsg');
-  const isDark  = document.body.classList.contains('dark');
-  overlay.classList.add('show');
-  pdfMsg.textContent = 'Preparando documento...';
-
-  if (isDark) document.body.classList.remove('dark');
-
-  const uiEls = document.querySelectorAll('.navbar,.wa-float,.hero-actions,.trust-bar,footer,.nav-controls,#scrollBar');
-  uiEls.forEach(el => { el._pdfDisplay = el.style.display; el.style.setProperty('display','none','important'); });
-
-  const mainEl   = document.querySelector('main');
-  const origPad  = mainEl.style.paddingTop;
-  mainEl.style.paddingTop = '0';
-
-  const styleTag = document.createElement('style');
-  styleTag.id = 'pdf-boost';
-  styleTag.textContent = `
-    body{font-size:1.1rem!important;}
-    .hero-name{font-size:2.8rem!important;}
-    h2{font-size:1.7rem!important;}
-    h3{font-size:1rem!important;}
-    p,.func-list li,.edu-card span,.focus-item span{font-size:0.9rem!important;}
-    .tag,.badge-license,.tl-meta,.label{font-size:0.78rem!important;}
-    .stat-number{font-size:1.8rem!important;}
-  `;
-  document.head.appendChild(styleTag);
-  await new Promise(r => setTimeout(r, 150));
-
-  try {
-    const { jsPDF } = window.jspdf;
-    const pdf     = new jsPDF({ orientation:'portrait', unit:'mm', format:'a4' });
-    const A4W     = 210, A4H = 297, M = 8, HDRH = 9;
-    const imgW    = A4W - M * 2;
-    const avail   = A4H - HDRH - M * 2;
-    const SCALE   = 2.2;
-
-    const groups = [
-      { label: currentLang === 'es' ? 'Perfil & Sobre mí'         : 'Profile & About',           ids: ['home','about']       },
-      { label: currentLang === 'es' ? 'Logros & Competencias'      : 'Achievements & Skills',     ids: ['projects','skills']  },
-      { label: currentLang === 'es' ? 'Experiencia Profesional'    : 'Professional Experience',   ids: ['experience']         },
-      { label: currentLang === 'es' ? 'Servicios & Contacto'       : 'Services & Contact',        ids: ['services','contact'] },
-    ];
-
-    for (let gi = 0; gi < groups.length; gi++) {
-      const grp = groups[gi];
-      pdfMsg.textContent = `Página ${gi+1} de ${groups.length}...`;
-
-      const wrapper = document.createElement('div');
-      wrapper.style.cssText = 'background:#fff;padding:0;width:1200px;';
-      for (const sid of grp.ids) {
-        const sec = document.getElementById(sid);
-        if (!sec) continue;
-        const clone = sec.cloneNode(true);
-        clone.style.marginBottom = '2rem';
-        wrapper.appendChild(clone);
-      }
-      document.body.appendChild(wrapper);
-
-      const canvas = await html2canvas(wrapper, {
-        scale: SCALE, 
-        useCORS: true, 
-        allowTaint: true,
-        backgroundColor: '#ffffff', 
-        logging: false,
-        width: 1200, 
-        windowWidth: 1200,
-        onclone: function(doc) {
-          // Forzar que las imágenes se carguen como CORS
-          const imgs = doc.querySelectorAll('img');
-          imgs.forEach(img => {
-            img.crossOrigin = 'anonymous';
-          });
-        }
-      });
-      document.body.removeChild(wrapper);
-
-      if (gi > 0) pdf.addPage();
-
-      pdf.setFillColor(124,58,237);
-      pdf.rect(0,0,A4W,HDRH,'F');
-      pdf.setFont('helvetica','bold'); pdf.setFontSize(7); pdf.setTextColor(255,255,255);
-      pdf.text(grp.label, M, 6);
-      pdf.setFont('helvetica','normal'); pdf.setFontSize(6.5); pdf.setTextColor(237,233,254);
-      pdf.text('Valentina Piragauta Páez', A4W - M, 6, { align:'right' });
-
-      const naturalH = (canvas.height / canvas.width) * imgW;
-      const finalH   = Math.min(naturalH, avail);
-      const imgData  = canvas.toDataURL('image/jpeg', 0.92);
-      pdf.addImage(imgData, 'JPEG', M, HDRH + M * 0.5, imgW, finalH);
-
-      pdf.setDrawColor(237,233,254); pdf.setLineWidth(0.3);
-      pdf.line(M, A4H-7, A4W-M, A4H-7);
-      pdf.setFont('helvetica','normal'); pdf.setFontSize(6); pdf.setTextColor(126,107,176);
-      pdf.text(`${currentLang==='es'?'Página':'Page'} ${gi+1} / ${groups.length}  ·  hseqvalentina@gmail.com  ·  +57 (310) 792-1199`,
-        A4W/2, A4H-3.5, { align:'center' });
-    }
-
-    pdf.save(currentLang==='es' ? 'CV_Valentina_Piragauta_HSEQ.pdf' : 'CV_Valentina_Piragauta_HSEQ_EN.pdf');
-
-  } catch(err) {
-    console.error(err);
-    alert(currentLang==='es' ? 'Error al generar PDF.' : 'PDF generation error.');
-  } finally {
-    document.getElementById('pdf-boost')?.remove();
-    uiEls.forEach(el => { el.style.removeProperty('display'); if (el._pdfDisplay) el.style.display = el._pdfDisplay; delete el._pdfDisplay; });
-    mainEl.style.paddingTop = origPad;
-    if (isDark) document.body.classList.add('dark');
-    overlay.classList.remove('show');
-  }
-}
-
-document.getElementById('pdfBtn').addEventListener('click', downloadPDF);
-document.getElementById('pdfBtnHero').addEventListener('click', downloadPDF);
-</script>
-<script>
 (function() {
   function initTimelineAnimation() {
     const timeline = document.querySelector('.timeline');
@@ -936,7 +740,6 @@ document.getElementById('pdfBtnHero').addEventListener('click', downloadPDF);
     function updateTimeline() {
       const winHeight = window.innerHeight;
       let maxVisibleIndex = -1;
-      
       items.forEach((item, index) => {
         const rect = item.getBoundingClientRect();
         const isVisible = rect.top < winHeight - 80 && rect.bottom > 80;
@@ -945,18 +748,15 @@ document.getElementById('pdfBtnHero').addEventListener('click', downloadPDF);
           if (index > maxVisibleIndex) maxVisibleIndex = index;
         }
       });
-      
       if (maxVisibleIndex >= 0) {
         const progress = (maxVisibleIndex + 1) / items.length;
         timeline.style.setProperty('--line-height', `${progress * 100}%`);
       }
     }
-
     window.addEventListener('scroll', updateTimeline);
     window.addEventListener('resize', updateTimeline);
     updateTimeline();
   }
-
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initTimelineAnimation);
   } else {
