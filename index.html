@@ -415,8 +415,7 @@ footer {
   <!-- HERO -->
   <section class="hero" id="home">
     <div class="hero-avatar">
-      <!-- 👇👇👇 AQUÍ DEBES PEGAR EL TEXTO BASE64 DE LA FOTO 👇👇👇 -->
-      <!-- EJEMPLO: src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA... (TODO EL TEXTO LARGO)" -->
+      <!-- CAMBIAR LA IMAGEN POR LA FOTO DE VALENTINA -->
       <img src="foto.jpg" alt="Valentina Piragauta">
     </div>
     <div>
@@ -639,7 +638,7 @@ footer {
         <p data-i18n="contact_desc">Disponible para consultorías, auditorías, implementación de sistemas de gestión y capacitación en Colombia, de forma presencial, remota o híbrida.</p>
       </div>
       <div>
-        <a href="mailto:valentinapiragautapaez@gmail.com" class="contact-item"><i class="fas fa-envelope"></i><div><div class="ci-label" data-i18n="email_lbl">Email</div><div class="ci-val">valentinapiragautapaez@gmail.com</div></div></a>
+        <a href="mailto:valentinapiragautapaez@gmail.com" class="contact-item"><i class="fas fa-envelope"></i><div><div class="ci-label" data-i18n="email_lbl">Email</div><div class="ci-val">hseqvalentina@gmail.com</div></div></a>
         <a href="tel:+573107921199" class="contact-item"><i class="fas fa-phone"></i><div><div class="ci-label" data-i18n="phone_lbl">Teléfono</div><div class="ci-val">+57 (310) 792-1199</div></div></a>
         <a href="https://wa.me/573107921199" target="_blank" class="contact-item"><i class="fab fa-whatsapp"></i><div><div class="ci-label">WhatsApp</div><div class="ci-val">+57 (310) 792-1199</div></div></a>
       </div>
@@ -891,10 +890,15 @@ async function downloadPDF() {
       document.body.appendChild(wrapper);
 
       const canvas = await html2canvas(wrapper, {
-        scale: SCALE, useCORS: true, allowTaint: true,
-        backgroundColor: '#ffffff', logging: false,
-        width: 1200, windowWidth: 1200,
+        scale: SCALE, 
+        useCORS: true, 
+        allowTaint: true,
+        backgroundColor: '#ffffff', 
+        logging: false,
+        width: 1200, 
+        windowWidth: 1200,
         onclone: function(doc) {
+          // Forzar que las imágenes se carguen como CORS
           const imgs = doc.querySelectorAll('img');
           imgs.forEach(img => {
             img.crossOrigin = 'anonymous';
@@ -920,7 +924,7 @@ async function downloadPDF() {
       pdf.setDrawColor(237,233,254); pdf.setLineWidth(0.3);
       pdf.line(M, A4H-7, A4W-M, A4H-7);
       pdf.setFont('helvetica','normal'); pdf.setFontSize(6); pdf.setTextColor(126,107,176);
-      pdf.text(`${currentLang==='es'?'Página':'Page'} ${gi+1} / ${groups.length}  ·  valentinapiragautapaez@gmail.com  ·  +57 (310) 792-1199`,
+      pdf.text(`${currentLang==='es'?'Página':'Page'} ${gi+1} / ${groups.length}  ·  hseqvalentina@gmail.com  ·  +57 (310) 792-1199`,
         A4W/2, A4H-3.5, { align:'center' });
     }
 
