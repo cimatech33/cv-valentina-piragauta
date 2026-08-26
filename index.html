@@ -306,6 +306,38 @@ footer {
   h2 { font-size: 1.6rem; }
   .hero-name { font-size: 2.4rem; }
 }
+
+/* ===== ESTILOS DE IMPRESIÓN PARA PDF ===== */
+@media print {
+  body { background: white; color: black; }
+  .navbar, .wa-float, #scrollBar, .nav-controls, .menu-icon { display: none !important; }
+  main { padding: 0 !important; max-width: 100%; }
+  section { margin-bottom: 1.5rem; page-break-inside: avoid; }
+  .hero { grid-template-columns: 1fr; text-align: center; }
+  .hero-avatar { width: 150px; height: 150px; margin: 0 auto; border-width: 2px; }
+  .hero-name { font-size: 2rem; }
+  .hero-desc { font-size: 0.85rem; max-width: 100%; }
+  .hero-actions { display: none; } /* Ocultar botones en la versión impresa */
+  .stats { flex-direction: row; justify-content: center; gap: 1rem; margin-top: 1rem; }
+  .stat-card { padding: 0.5rem; border: 1px solid #ccc; }
+  .stat-number { font-size: 1.2rem; }
+  .about-grid, .exp-layout { grid-template-columns: 1fr; gap: 1rem; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .services-grid { grid-template-columns: 1fr; }
+  .tag { background: #f0f0f0; color: #333; border: 1px solid #ddd; }
+  .project-card, .srv-card, .edu-card, .focus-item, .stat-card, .tl-item { border: 1px solid #ccc; break-inside: avoid; }
+  h2 { font-size: 1.3rem; margin-bottom: 0.8rem; }
+  h2 em { color: #333; }
+  .label { color: #333; }
+  .label::before { background: #333; }
+  .timeline::before { background: #ccc; }
+  .tl-item::before { background: white; border-color: #ccc; }
+  .tl-item.featured::before { background: #333; border-color: #333; }
+  .focus-icon, .project-icon, .srv-icon { background: #f0f0f0; color: #333; }
+  a { color: #333; text-decoration: underline; }
+  footer { display: none; }
+}
 </style>
 </head>
 <body>
@@ -343,6 +375,7 @@ footer {
       <p class="hero-desc" data-i18n="hero_desc">Profesional en Seguridad y Salud en el Trabajo (SST), Auditora Líder HSEQ (Trinorma) y Auditora RUC. Más de 8 años de experiencia en diseño, administración, mantenimiento y ejecución de sistemas integrados de gestión. Experiencia en auditorias, consultorías, gestión de riesgos, cumplimiento legal, implementación de acciones de mejora y fortalecimiento de la cultura organizacional. Me destaco por mi liderazgo, pensamiento estratégico, capacidad de análisis, planificación, organización y adaptación al cambio, orientando la gestión al cumplimiento normativo, la optimización de procesos y la mejora continua. Comprometida con la generación de valor para las organizaciones mediante soluciones integrales que fortalecen el desempeño en calidad, seguridad, salud en el trabajo y gestión ambiental, contribuyendo al logro de los objetivos estratégicos y al desarrollo de organizaciones más seguras, eficientes y sostenibles.</p>
       <div class="hero-actions">
         <a href="#contact" class="btn btn-primary" data-i18n="btn_contact"><i class="fas fa-paper-plane"></i> Contactar</a>
+        <button class="btn btn-outline" onclick="window.print()"><i class="fas fa-file-pdf"></i> <span data-i18n="btn_pdf">Descargar PDF</span></button>
       </div>
     </div>
     <div class="stats">
@@ -594,6 +627,7 @@ const translations = {
     hero_tag:"Bogotá, Colombia · Presencial/Remoto/Híbrido",
     hero_desc:"Profesional en Seguridad y Salud en el Trabajo (SST), Auditora Líder HSEQ (Trinorma) y Auditora RUC. Más de 8 años de experiencia en diseño, administración, mantenimiento y ejecución de sistemas integrados de gestión. Experiencia en auditorias, consultorías, gestión de riesgos, cumplimiento legal, implementación de acciones de mejora y fortalecimiento de la cultura organizacional. Me destaco por mi liderazgo, pensamiento estratégico, capacidad de análisis, planificación, organización y adaptación al cambio, orientando la gestión al cumplimiento normativo, la optimización de procesos y la mejora continua. Comprometida con la generación de valor para las organizaciones mediante soluciones integrales que fortalecen el desempeño en calidad, seguridad, salud en el trabajo y gestión ambiental, contribuyendo al logro de los objetivos estratégicos y al desarrollo de organizaciones más seguras, eficientes y sostenibles.",
     btn_contact:"Contactar",
+    btn_pdf:"Descargar PDF",
     stat1:"Años en HSEQ y gestión",stat2:"Auditorías realizadas",stat3:"Empresas certificadas",
     label_about:"Perfil profesional",
     about_h2:"Impulsando el cumplimiento normativo,<br><em>la excelencia operacional y la mejora continua.</em>",
@@ -633,7 +667,6 @@ const translations = {
     edu10_title:"Auditor Interno en el Sistema Integrado de Gestión",edu10_school:"CQR - COTECNA (2019)",edu10_scope:"ISO 9001, 14001, 45001",
     edu11_title:"Sistema de Gestión de la Seguridad y Salud en el Trabajo - SG-SST",edu11_school:"SENA - SOFIA PLUS (2017 / 2024)",edu11_hours:"50 Horas",
     edu12_title:"Diplomado en Seguridad y Salud en el Trabajo",edu12_school:"Politécnico de Colombia (2016)",
-    // Nuevas certificaciones
     edu13_title:"Coordinador de Alturas",edu13_school:"CEA AUTOMAT SAS (2026)",edu13_meta:"80 Horas · Bogotá",
     edu14_title:"Programa de Capacitación 30 Horas de Construcción de OSHA",edu14_school:"360training (2025)",edu14_meta:"30 Horas · CEUs 3.0",
     label_tools:"Herramientas & Estándares",
@@ -661,6 +694,7 @@ const translations = {
     hero_tag:"Bogotá, Colombia · On-site/Remote/Hybrid",
     hero_desc:"Professional in Occupational Health and Safety (OHS), HSEQ Lead Auditor (Trinorma) and RUC Auditor. Over 8 years of experience in design, administration, maintenance and execution of integrated management systems. Experience in auditing, consulting, risk management, legal compliance, implementation of improvement actions and strengthening of organizational culture. I stand out for my leadership, strategic thinking, analytical capacity, planning, organization and adaptability to change, guiding management towards regulatory compliance, process optimization and continuous improvement. Committed to generating value for organizations through comprehensive solutions that strengthen performance in quality, safety, occupational health and environmental management, contributing to the achievement of strategic objectives and the development of safer, more efficient and sustainable organizations.",
     btn_contact:"Contact me",
+    btn_pdf:"Download PDF",
     stat1:"Years in HSEQ & management",stat2:"Audits performed",stat3:"Companies certified",
     label_about:"Professional profile",
     about_h2:"Driving regulatory compliance,<br><em>operational excellence and continuous improvement.</em>",
@@ -700,7 +734,6 @@ const translations = {
     edu10_title:"Internal Auditor in Integrated Management System",edu10_school:"CQR - COTECNA (2019)",edu10_scope:"ISO 9001, 14001, 45001",
     edu11_title:"Occupational Health and Safety Management System - SG-SST",edu11_school:"SENA - SOFIA PLUS (2017 / 2024)",edu11_hours:"50 Hours",
     edu12_title:"Diploma in Occupational Health and Safety",edu12_school:"Politécnico de Colombia (2016)",
-    // New certifications
     edu13_title:"Height Coordinator",edu13_school:"CEA AUTOMAT SAS (2026)",edu13_meta:"80 Hours · Bogotá",
     edu14_title:"OSHA 30-Hour Construction Training Program",edu14_school:"360training (2025)",edu14_meta:"30 Hours · CEUs 3.0",
     label_tools:"Tools & Standards",
