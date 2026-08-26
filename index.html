@@ -314,7 +314,7 @@ footer {
 
 <nav class="navbar">
   <div class="nav-inner">
-    <div class="logo"><span class="logo-prefix">Prof.</span> Valentina Piragauta <span class="logo-suffix">— HSEQ, Auditoría & Gestión de Riesgos</span></div>
+    <div class="logo"><span class="logo-prefix" id="logoPrefix">Prof.</span> Valentina Piragauta <span class="logo-suffix" id="logoSuffix">— HSEQ, Auditoría & Gestión de Riesgos</span></div>
     <div class="nav-links" id="navLinks">
       <a href="#home"       data-i18n="nav_home">Inicio</a>
       <a href="#about"      data-i18n="nav_about">Perfil</a>
@@ -494,6 +494,10 @@ footer {
           <div class="edu-card"><i class="fas fa-clipboard-check"></i><div><strong data-i18n="edu10_title">Auditor Interno en el Sistema Integrado de Gestión</strong><br><span data-i18n="edu10_school">CQR - COTECNA (2019)</span> · <span data-i18n="edu10_scope">ISO 9001, 14001, 45001</span></div></div>
           <div class="edu-card"><i class="fas fa-shield-alt"></i><div><strong data-i18n="edu11_title">Sistema de Gestión de la Seguridad y Salud en el Trabajo - SG-SST</strong><br><span data-i18n="edu11_school">SENA - SOFIA PLUS (2017 / 2024)</span> · <span data-i18n="edu11_hours">50 Horas</span></div></div>
           <div class="edu-card"><i class="fas fa-briefcase"></i><div><strong data-i18n="edu12_title">Diplomado en Seguridad y Salud en el Trabajo</strong><br><span data-i18n="edu12_school">Politécnico de Colombia (2016)</span></div></div>
+          <!-- NUEVA CERTIFICACIÓN 1: Coordinador de Alturas -->
+          <div class="edu-card"><i class="fas fa-arrows-alt-v"></i><div><strong data-i18n="edu13_title">Coordinador de Alturas</strong><br><span data-i18n="edu13_school">CEA AUTOMAT SAS (2026)</span> · <span data-i18n="edu13_meta">80 Horas · Bogotá</span></div></div>
+          <!-- NUEVA CERTIFICACIÓN 2: OSHA 30 Horas Construcción -->
+          <div class="edu-card"><i class="fas fa-hard-hat"></i><div><strong data-i18n="edu14_title">Programa de Capacitación 30 Horas de Construcción de OSHA</strong><br><span data-i18n="edu14_school">360training (2025)</span> · <span data-i18n="edu14_meta">30 Horas · CEUs 3.0</span></div></div>
         </div>
         <div>
           <div class="label" data-i18n="label_tools">Herramientas & Estándares</div>
@@ -502,6 +506,7 @@ footer {
             <span class="tag">ISO 19011</span><span class="tag">Decreto 1072</span><span class="tag">RUC</span>
             <span class="tag">SG-SST</span><span class="tag">ARL</span><span class="tag">HSEQ</span>
             <span class="tag">Resolución 0312</span><span class="tag">Auditoría</span><span class="tag">Mejora continua</span>
+            <span class="tag">Trabajo en Alturas</span><span class="tag">OSHA</span>
           </div>
         </div>
       </div>
@@ -628,6 +633,9 @@ const translations = {
     edu10_title:"Auditor Interno en el Sistema Integrado de Gestión",edu10_school:"CQR - COTECNA (2019)",edu10_scope:"ISO 9001, 14001, 45001",
     edu11_title:"Sistema de Gestión de la Seguridad y Salud en el Trabajo - SG-SST",edu11_school:"SENA - SOFIA PLUS (2017 / 2024)",edu11_hours:"50 Horas",
     edu12_title:"Diplomado en Seguridad y Salud en el Trabajo",edu12_school:"Politécnico de Colombia (2016)",
+    // Nuevas certificaciones
+    edu13_title:"Coordinador de Alturas",edu13_school:"CEA AUTOMAT SAS (2026)",edu13_meta:"80 Horas · Bogotá",
+    edu14_title:"Programa de Capacitación 30 Horas de Construcción de OSHA",edu14_school:"360training (2025)",edu14_meta:"30 Horas · CEUs 3.0",
     label_tools:"Herramientas & Estándares",
     label_skills:"Competencias",skills_h2:"Dominio técnico, normativo<br><em>y liderazgo estratégico.</em>",
     sg1:"Sistemas de Gestión",sg2:"Liderazgo & Gestión",sg3:"Normativa & Prevención",
@@ -692,6 +700,9 @@ const translations = {
     edu10_title:"Internal Auditor in Integrated Management System",edu10_school:"CQR - COTECNA (2019)",edu10_scope:"ISO 9001, 14001, 45001",
     edu11_title:"Occupational Health and Safety Management System - SG-SST",edu11_school:"SENA - SOFIA PLUS (2017 / 2024)",edu11_hours:"50 Hours",
     edu12_title:"Diploma in Occupational Health and Safety",edu12_school:"Politécnico de Colombia (2016)",
+    // New certifications
+    edu13_title:"Height Coordinator",edu13_school:"CEA AUTOMAT SAS (2026)",edu13_meta:"80 Hours · Bogotá",
+    edu14_title:"OSHA 30-Hour Construction Training Program",edu14_school:"360training (2025)",edu14_meta:"30 Hours · CEUs 3.0",
     label_tools:"Tools & Standards",
     label_skills:"Skills",skills_h2:"Technical, regulatory<br><em>and strategic leadership.</em>",
     sg1:"Management Systems",sg2:"Leadership & Management",sg3:"Regulations & Prevention",
